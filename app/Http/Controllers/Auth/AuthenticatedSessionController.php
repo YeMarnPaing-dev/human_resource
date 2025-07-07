@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
             // dd($request->user());
             dd('Hi Admin');
           }else{
-            dd('Hi User');
+            dd('Hi This is user');
           }
     }
 
