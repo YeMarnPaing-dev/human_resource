@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
         //   }
           if($request->user()->role == 'admin' || $request->user()->role =='superadmin' ){
             // dd($request->user());
-            dd('Hi Admin');
+           return to_route('admin#dashboard');
           }else{
             dd('Hi This is user');
           }
