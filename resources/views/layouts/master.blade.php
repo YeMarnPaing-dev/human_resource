@@ -21,7 +21,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
 crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+{{-- datatable  --}}
 
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css">
+<link rel="stylesheet" href="{{asset('register/css/table.css')}}">
 
 
 </head>
@@ -34,7 +38,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
+        <a href="#">HRM</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
@@ -55,69 +59,28 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
           </span>
         </div>
       </div>
-      <!-- sidebar-header  -->
-      <div class="sidebar-search">
-        <div>
-          <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search...">
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- sidebar-search  -->
+
       <div class="sidebar-menu">
         <ul>
           <li class="header-menu">
             <span>General</span>
           </li>
           <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-tachometer-alt"></i>
-              <span>Dashboard</span>
-              <span class="badge badge-pill badge-warning">New</span>
+            <a href="{{route('admin#dashboard')}}">
+              <i class="fa fa-home"></i>
+              <span>Home</span>
+
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Dashboard 1
-                    <span class="badge badge-pill badge-success">Pro</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 2</a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 3</a>
-                </li>
-              </ul>
-            </div>
+
           </li>
           <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-shopping-cart"></i>
-              <span>E-commerce</span>
-              <span class="badge badge-pill badge-danger">3</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Products
+            <a href="{{route('employeeManangement.index')}}">
+              <i class="fa fa-user"></i>
+              <span>Employees</span>
 
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Orders</a>
-                </li>
-                <li>
-                  <a href="#">Credit cart</a>
-                </li>
-              </ul>
-            </div>
-          </li>
+            </a>
+
+          {{-- </li>
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="far fa-gem"></i>
@@ -202,29 +165,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
               <i class="fa fa-folder"></i>
               <span>Examples</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </div>
       <!-- sidebar-menu  -->
     </div>
     <!-- sidebar-content  -->
-    <div class="sidebar-footer">
-      <a href="#">
-        <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-envelope"></i>
-        <span class="badge badge-pill badge-success notification">7</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-cog"></i>
-        <span class="badge-sonar"></span>
-      </a>
-      <a href="#">
-        <i class="fa fa-power-off"></i>
-      </a>
-    </div>
+
   </nav>
   <!-- sidebar-wrapper  -->
   <div class="header-menu">
@@ -240,7 +187,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </div>
         </div>
         <div class="page-content py-4">
-            @yield('content')
+            <div class="d-flex justify-content-center">
+ <div class="col-md-6">  @yield('content')
+
+ </div>
+            </div>
+
+
+
         </div>
          <div class="bottom-menu">
             <div class="row justify-content-center">
@@ -265,6 +219,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
+@yield('script')
 
 </body>
 
@@ -277,13 +232,21 @@ integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="{{asset('register/js/style.js')}}"></script>
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ {{-- datatable  --}}
+
+ <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+ <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+
 
 
 </html>

@@ -1,0 +1,49 @@
+@extends('layouts/master')
+
+@section('title', 'Employees')
+
+
+@section('content')
+    <div class="table-container">
+        <form action="{{url('employeeManangement')}}">
+        <input type="text" class="searchInput " value="{{request('searchKey')}}" placeholder="Search by name or email..." name="searchKey" />
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee Id</th>
+                    <th>Department</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Nrc Number</th>
+                    <th>Is-Present</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($employees as $user)
+                    <tr>
+                        <td>{{ $user->employee_id }}</td>
+                        <td>{{ $user->department_name }}</td>
+                        <td>{{ $user->user_name }}</td>
+                        <td>{{ $user->phone }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->nrc_number }}</td>
+                        <td>
+
+                                @if ($user->is_present ==1)
+                                    <span class="badge badge-pill badge-light border border-success text-success">Present</span>
+                                    @elseif ($user->is_present ==0)
+                                    <span class="badge badge-pill badge-light border border-danger text-danger">Leave</span>
+                                    @endif
+
+
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection
