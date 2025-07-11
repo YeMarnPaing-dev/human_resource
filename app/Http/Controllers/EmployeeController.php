@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -21,6 +22,12 @@ public function index(){
     ->get();
 
     return view('employee.index',compact('employees'));
+}
+
+public function create(){
+
+    $departments = Department::orderBy('name')->get();
+    return view('employee.create',compact('departments'));
 }
 
 

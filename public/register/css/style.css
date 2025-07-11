@@ -1,13 +1,12 @@
 /* header-menu */
 
+
 .header-menu{
 padding:15px 0px  !important;
 box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
 
 
-
-/* bottom-menu  */
 
 .bottom-menu{
     position: absolute;
@@ -18,7 +17,7 @@ box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
 
 .bottom-menu a{
-    padding: 15px ;
+    padding: 5px 25px ;
     text-align: center;
     color: #000;
 
@@ -29,6 +28,11 @@ box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
     text-transform: uppercase;
 
 }
+
+
+
+
+
 
 /* side bar  */
 @keyframes swing {
@@ -534,3 +538,4 @@ body {
     z-index: 1001;
   }
 }
+

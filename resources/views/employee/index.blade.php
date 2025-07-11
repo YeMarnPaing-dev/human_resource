@@ -4,12 +4,14 @@
 
 
 @section('content')
-    <div class="table-container">
-        <form action="{{url('employeeManangement')}}">
-        <input type="text" class="searchInput " value="{{request('searchKey')}}" placeholder="Search by name or email..." name="searchKey" />
-        </form>
 
-        <table>
+    <div class="table-container">
+        <form action="{{ url('employeeManangement') }}">
+            <input type="text" class="searchInput " value="{{ request('searchKey') }}"
+                placeholder="Search by name or email..." name="searchKey" />
+                <a href="{{route('employeeManangement.create')}}" class="btn btn-primary btn-sm my-2"> <i class="fa fa-plus"></i> Create Employee</a>
+        </form>
+               <table>
             <thead>
                 <tr>
                     <th>Employee Id</th>
@@ -33,11 +35,11 @@
                         <td>{{ $user->nrc_number }}</td>
                         <td>
 
-                                @if ($user->is_present ==1)
-                                    <span class="badge badge-pill badge-light border border-success text-success">Present</span>
-                                    @elseif ($user->is_present ==0)
-                                    <span class="badge badge-pill badge-light border border-danger text-danger">Leave</span>
-                                    @endif
+                            @if ($user->is_present == 1)
+                                <span class="badge badge-pill badge-light border border-success text-success">Present</span>
+                            @elseif ($user->is_present == 0)
+                                <span class="badge badge-pill badge-light border border-danger text-danger">Leave</span>
+                            @endif
 
 
                         </td>

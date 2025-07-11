@@ -28,6 +28,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="{{asset('register/css/table.css')}}">
 
 
+{{-- date range picker  --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 </head>
 <body>
 
@@ -174,10 +177,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   </nav>
   <!-- sidebar-wrapper  -->
-  <div class="header-menu">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="d-flex justify-content-between">
+  <div class="header-menu ">
+            <div class="row  justify-content-center">
+                <div class="col-md-8 ">
+                    <div class="d-flex  justify-content-between">
                         <a href=""></a>
                         <h5>@yield('title')</h5>
                         <a href=""></a>
@@ -186,17 +189,20 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 </div>
             </div>
         </div>
-        <div class="page-content py-4">
-            <div class="d-flex justify-content-center">
- <div class="col-md-6">  @yield('content')
+
+
+        <div class=" scroll-m-5 py-4">
+            <div class="d-flex  justify-content-center">
+ <div class="col-md-6  ">
+     @yield('content')
 
  </div>
-            </div>
+</div>
 
 
 
         </div>
-         <div class="bottom-menu">
+         {{-- <div class="bottom-menu">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between">
@@ -213,15 +219,16 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </div>
         </div>
   <!-- page-content" -->
-</div>
+</div> --}}
 
 
 
 
 
-@yield('script')
+
 
 </body>
+
 
 {{-- boostrap --}}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -248,5 +255,10 @@ integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa
 
 
 
+{{-- date range picker  --}}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 </html>
+
+@yield('script')
