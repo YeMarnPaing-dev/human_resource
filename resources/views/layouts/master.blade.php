@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,81 +10,90 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
     {{-- boostrap --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-    rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
+    </script>
 
-     {{-- css --}}
-     <link rel="stylesheet" href="{{asset('register/css/style.css')}}">
+    {{-- css --}}
+    <link rel="stylesheet" href="{{ asset('register/css/style.css') }}">
 
-     {{-- font-awesome  --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
-{{-- datatable  --}}
+    {{-- font-awesome  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+    {{-- datatable  --}}
 
-<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css">
-<link rel="stylesheet" href="{{asset('register/css/table.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="{{ asset('register/css/table.css') }}">
 
 
-{{-- date range picker  --}}
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    {{-- date range picker  --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 </head>
+
 <body>
 
     <div class="page-wrapper chiller-theme toggled">
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="fas fa-bars"></i>
-  </a>
-  <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-      <div class="sidebar-brand">
-        <a href="#">HRM</a>
-        <div id="close-sidebar">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
-      <div class="sidebar-header">
-        <div class="user-pic">
-          <img class="img-responsive img-rounded" src="{{asset('userImage/default-avatar.png')}}"
-            alt="User picture">
-        </div>
-        <div class="user-info">
-          <span class="user-name">
-            <strong>{{Auth::user()->name}}</strong>
-          </span>
-          <span class="user-role">Administrator</span>
-          <span class="user-status">
-            <i class="fa fa-circle"></i>
-            <span>Online</span>
-          </span>
-        </div>
-      </div>
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
+                    <a href="#">HRM</a>
+                    <div id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="sidebar-header">
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" src="{{ asset('userImage/default-avatar.png') }}"
+                            alt="User picture">
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">
+                            <strong>{{ Auth::user()->name }}</strong>
+                        </span>
+                        <span class="user-role">Administrator</span>
+                     @if (Auth::user()->is_present == 1)
+                     <span class="user-status">
+                            <i class="fa fa-circle"></i>
+                            <span>Online</span>
+                        </span>
+                     @else
+                      <span class="user-status">
+                            <i class="fa text-danger fa-circle"></i>
+                            <span>Absent</span>
+                        </span>
+                     @endif
+                    </div>
+                </div>
 
-      <div class="sidebar-menu">
-        <ul>
-          <li class="header-menu">
-            <span>General</span>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="{{route('admin#dashboard')}}">
-              <i class="fa fa-home"></i>
-              <span>Home</span>
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="{{ route('admin#dashboard') }}">
+                                <i class="fa fa-home"></i>
+                                <span>Home</span>
 
-            </a>
+                            </a>
 
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="{{route('employeeManangement.index')}}">
-              <i class="fa fa-user"></i>
-              <span>Employees</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="{{ route('employeeManangement.index') }}">
+                                <i class="fa fa-user"></i>
+                                <span>Employees</span>
 
-            </a>
+                            </a>
 
-          {{-- </li>
+                            {{-- </li>
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="far fa-gem"></i>
@@ -169,15 +179,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
               <span>Examples</span>
             </a>
           </li> --}}
-        </ul>
-      </div>
-      <!-- sidebar-menu  -->
-    </div>
-    <!-- sidebar-content  -->
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+            <!-- sidebar-content  -->
 
-  </nav>
-  <!-- sidebar-wrapper  -->
-  <div class="header-menu ">
+        </nav>
+        <!-- sidebar-wrapper  -->
+        <div class="header-menu ">
             <div class="row  justify-content-center">
                 <div class="col-md-8 ">
                     <div class="d-flex  justify-content-between">
@@ -193,16 +203,16 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <div class=" scroll-m-5 py-4">
             <div class="d-flex  justify-content-center">
- <div class="col-md-6  ">
-     @yield('content')
+                <div class="col-md-6  ">
+                    @yield('content')
 
- </div>
-</div>
+                </div>
+            </div>
 
 
 
         </div>
-         {{-- <div class="bottom-menu">
+        {{-- <div class="bottom-menu">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between">
@@ -232,26 +242,28 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {{-- boostrap --}}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
- integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+    integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous">
+</script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <script src="{{asset('register/js/style.js')}}"></script>
+<script src="{{ asset('register/js/style.js') }}"></script>
 
- {{-- datatable  --}}
+{{-- datatable  --}}
 
- <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
- <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
 
 
 
@@ -260,7 +272,30 @@ integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 {{-- validation  --}}
- <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+<script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
+
+{{-- sweet alert  --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(function($) {
+        @if (session('create'))
+            Swal.fire({
+                title: "Account Create Successfully",
+                icon: "success",
+                text: "{{ session('create') }}",
+            });
+        @endif
+
+        document.addEventListener('click', function(event) {
+            if (document.getElementById('show-sidebar').contains(event.target)) {
+                $('.page-wrapper').addClass('toggled');
+            } else if (!document.getElementById('sidebar').contains(event.target)) {
+                $('.page-wrapper').removeClass('toggled');
+            }
+        })
+    });
+</script>
 
 </html>
 
