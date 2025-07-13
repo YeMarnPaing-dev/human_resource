@@ -6,7 +6,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="" method="POST" id="create-form">
                 @csrf
 <div class="row">
     <div class="col-md-6"><div class="md-form">
@@ -100,6 +100,7 @@
 
 @section('script')
     <script>
+        {{!!JsValidator::formRequest('App\Http\Request\StoreEmployee', '#create-form');!!}}
        $(document).ready(function(){
         $('.birthday').daterangepicker({
 'singleDatePicker':true,
