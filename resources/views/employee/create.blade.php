@@ -6,7 +6,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{route('employeeManangement.store')}}" method="POST" id="create-form">
+            <form action="{{route('employeeManangement.store')}}" method="POST" id="create-form" enctype="multipart/form-data">
                 @csrf
 <div class="row">
     <div class="col-lg-6"><div class="md-form">
@@ -75,6 +75,14 @@
                         <option value="0">Absent</option>
                     </select>
                 </div>
+
+               <div class="form-group">
+  <label for="profile_img">Profile Image</label>
+  <input type="file" name="image" class="form-control" id="profile_img" >
+  <div class="preview mt-2"></div>
+</div>
+
+
                 <div class="md-form">
                     <label for="">Password</label>
                     <input type="password"  name="password" class="form-control">
@@ -121,6 +129,16 @@
     'format':'YYYY-MM-DD',
 }
 });
+
+  $('#profile_img').on('change', function (event) {
+    const files = event.target.files;
+    $('.preview').html(''); // Clear previous preview
+
+    for (let i = 0; i < files.length; i++) {
+      const imageUrl = URL.createObjectURL(files[i]);
+      $('.preview').append(`<img src="${imageUrl}" class="img-thumbnail" style="max-width: 150px; margin: 5px;" />`);
+    }
+  });
        });
     </script>
 

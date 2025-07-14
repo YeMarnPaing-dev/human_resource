@@ -6,7 +6,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{route('employeeManangement.update',$employee->id)}}" method="POST" id="update-form">
+            <form action="{{route('employeeManangement.update',$employee->id)}}" method="POST" id="update-form" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 <div class="row">
@@ -78,10 +78,16 @@
                         <option @if ($employee->is_present == '0')   selected @endif value="0">Absent</option>
                     </select>
                 </div>
-                {{-- <div class="md-form">
-                    <label for="">Password</label>
-                    <input type="password"  name="password" class="form-control">
-                </div> --}}
+                              <div class="form-group">
+  <label for="profile_img">Profile Image</label>
+  <input type="file" name="image" class="form-control" id="profile_img" >
+  <div class="preview mt-2">
+    @if ($employee->profile_img)
+    <img src="{{$employee->profile_img_path()}}" class="thumbnail" alt="">
+    @endif
+  </div>
+</div>
+
      </div>
 </div>
 
@@ -124,6 +130,17 @@
     'format':'YYYY-MM-DD',
 }
 });
+
+  $('#profile_img').on('change', function (event) {
+    const files = event.target.files;
+    $('.preview').html(''); // Clear previous preview
+
+    for (let i = 0; i < files.length; i++) {
+      const imageUrl = URL.createObjectURL(files[i]);
+      $('.preview').append(`<img src="${imageUrl}" class="img-thumbnail" style="max-width: 150px; margin: 5px;" />`);
+    }
+  });
+
        });
     </script>
 

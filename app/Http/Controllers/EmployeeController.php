@@ -9,6 +9,7 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\UpdateForm;
 use App\Http\Requests\StoreEmployee;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -39,6 +40,12 @@ public function create(){
 
 public function store(StoreEmployee $request){
 
+  if($request->hasFile('image')){
+    $fileName = uniqid()  . $request->file('image')->getClientOriginalName();
+    $request->file('image')->move(public_path()."/employee/", $fileName);
+
+  }
+
     $employee = new User();
     $employee->employee_id = $request->employee_id;
     $employee->name = $request->name;
@@ -50,6 +57,7 @@ public function store(StoreEmployee $request){
     $employee->address = $request->address;
     $employee->department_id = $request->department_id;
     $employee->date_of_join = $request->dateOfJoin;
+    $employee->profile_img = $fileName;
     $employee->is_present = $request->is_present;
     $employee->password = Hash::make($request->password);
     $employee->save();
@@ -73,6 +81,22 @@ public function store(StoreEmployee $request){
 
     public function update($id, UpdateForm $request){
     $employee =User::findorfail($id);
+if ($request->hasFile('image')) {
+    $oldImage = $employee->profile_img; // get from DB, not from request
+
+    // Delete old image if it exists
+    $oldImagePath = public_path('employee/' . $oldImage);
+    if ($oldImage && file_exists($oldImagePath)) {
+        unlink($oldImagePath);
+    }
+
+    // Upload new image
+    $fileName = uniqid() . '_' . $request->file('image')->getClientOriginalName();
+    $request->file('image')->move(public_path('employee'), $fileName);
+
+    $employee->profile_img = $fileName;
+}
+
     $employee->employee_id = $request->employee_id;
     $employee->name = $request->name;
     $employee->email = $request->email;
@@ -89,5 +113,11 @@ public function store(StoreEmployee $request){
 
 
     return redirect()->route('employeeManangement.index')->with('update','Employee is updated successfully');
+    }
+
+    public function show($id){
+        $employee = User::findorFail($id);
+
+        return view('employee.showDetail',compact('employee'));
     }
 }
