@@ -51,7 +51,8 @@
                 </div>
                 <div class="sidebar-header">
                     <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="{{ asset('userImage/default-avatar.png') }}"
+                        <img class="img-responsive img-rounded"
+                            src="{{ Auth::user()->profile_img == null ? asset('userImage/default-avatar.png') : asset('employee/' . Auth::user()->profile_img) }}"
                             alt="User picture">
                     </div>
                     <div class="user-info">
@@ -59,17 +60,17 @@
                             <strong>{{ Auth::user()->name }}</strong>
                         </span>
                         <span class="user-role">Administrator</span>
-                     @if (Auth::user()->is_present == 1)
-                     <span class="user-status">
-                            <i class="fa fa-circle"></i>
-                            <span>Online</span>
-                        </span>
-                     @else
-                      <span class="user-status">
-                            <i class="fa text-danger fa-circle"></i>
-                            <span>Absent</span>
-                        </span>
-                     @endif
+                        @if (Auth::user()->is_present == 1)
+                            <span class="user-status">
+                                <i class="fa fa-circle"></i>
+                                <span>Online</span>
+                            </span>
+                        @else
+                            <span class="user-status">
+                                <i class="fa text-danger fa-circle"></i>
+                                <span>Absent</span>
+                            </span>
+                        @endif
                     </div>
                 </div>
 
@@ -277,6 +278,8 @@
 {{-- sweet alert  --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
     $(function($) {
         @if (session('create'))
@@ -294,6 +297,30 @@
                 $('.page-wrapper').removeClass('toggled');
             }
         })
+
+        // $(document).on('click', '.delete-btn', function(e) {
+        //     e.preventDefault();
+
+        //     var id = $(this).data('id');
+        //     swal({
+        //             title: "Are you sure?",
+        //             text: "Do you want to Delete this!",
+        //             buttons: true,
+        //             dangerMode: true,
+        //         })
+        //         .then((willDelete) => {
+        //             if (willDelete) {
+        //                 $.ajax({
+        //                         method: "DELETE",
+        //                         url: `/employeeManangement/${id}`,
+
+        //                     })
+        //                     .done(function(res) {
+
+        //                     });
+        //             }
+        //         });
+        // })
     });
 </script>
 

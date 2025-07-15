@@ -69,6 +69,10 @@ public function store(StoreEmployee $request){
   public function destroy($id)
     {
         $employee = User::findOrFail($id);
+        $oldImage = User::where('id',$id)->value('profile_img');
+        // dd($oldImage);
+       if(file_exists(\public_path('employee/'.$oldImage))){ //delete if old image exist
+        unlink(public_path('employee/'.$oldImage));}
         $employee->delete();
         return redirect()->route('employeeManangement.index')->with('success', 'Employee deleted.');
     }
@@ -120,4 +124,6 @@ if ($request->hasFile('image')) {
 
         return view('employee.showDetail',compact('employee'));
     }
+
+
 }

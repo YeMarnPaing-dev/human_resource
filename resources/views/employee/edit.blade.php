@@ -4,6 +4,9 @@
 
 
 @section('content')
+<div>
+    <a href="{{route('employeeManangement.index')}}"><input type="button" name="" class="btn btn-primary mb-2" value="Back" id=""></a>
+</div>
     <div class="card">
         <div class="card-body">
             <form action="{{route('employeeManangement.update',$employee->id)}}" method="POST" id="update-form" enctype="multipart/form-data">
@@ -83,7 +86,7 @@
   <input type="file" name="image" class="form-control" id="profile_img" >
   <div class="preview mt-2">
     @if ($employee->profile_img)
-    <img src="{{$employee->profile_img_path()}}" class="thumbnail" alt="">
+    <img src="{{$employee->profile_img_path()}}" style="width: 150px; height: 150px;" >
     @endif
   </div>
 </div>

@@ -50,7 +50,9 @@
                                 <i class="fa fa-trash"></i>
                             </button>
                         </form>
+
                             <a href="{{route('employeeManangement.edit',$user->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+
                             <a href="{{route('employeeManangement.show',$user->id)}}" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-user"></i></a>
                         </td>
                     </tr>

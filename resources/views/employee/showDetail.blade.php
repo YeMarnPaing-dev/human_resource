@@ -4,66 +4,46 @@
 
 
 @section('content')
+
+<div>
+    <a href="{{route('employeeManangement.index')}}"><input type="button" name="" class="btn btn-primary mb-2" value="Back" id=""></a>
+</div>
 <div class="card">
     <div class="card-body">
+
         <div class="row">
-             <div class="col-md-6">
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i> Employee Id</p>
-                <p class="mb-1 text-muted">{{$employee->name}}</p>
+            <div class="col-md-6 text-center">
+                <img src="{{$employee->profile_img == null ? asset('userImage/default-avatar.png') : asset('employee/'. $employee->profile_img)}}" class=""
+   style="width:120px;
+    height: 120px;
+    border-radius: 50%;
+    border:1px solid #ddd;
+    padding: 3px;" alt="">
+     <div class="py-3 px-2">
+                <h3>{{$employee->name}}</h3>
+                <p class="text-muted mb-1">{{$employee->employee_id}}</p>
+                <p class="text-muted mb-1">{{$employee->department ? $employee->department->name : ' '}}</p>
             </div>
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i> Name</p>
-                <p class="mb-1 text-muted">{{$employee->name}}</p>
             </div>
 
-             <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i> Email</p>
-                <p class="mb-1 text-muted">{{$employee->email}}</p>
-            </div>
+            <div class="col-md-6 py-3 px-3" style="border-left:2px dashed #ddd;">
 
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i> Phone</p>
-                <p class="mb-1 text-muted">{{$employee->phone}}</p>
-            </div>
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i>  Address</p>
-                <p class="mb-1 text-muted">{{$employee->address}}</p>
-            </div>
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i>  Nrc-number</p>
-                <p class="mb-1 text-muted">{{$employee->nrc_number}}</p>
-            </div>
-        </div>
-         <div class="col-md-6">
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i> Departments</p>
-                <p class="mb-1 text-muted">{{$employee->department ? $employee->department->name : ''}}</p>
-            </div>
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i> Birthday</p>
-                <p class="mb-1 text-muted">{{$employee->birthday}}</p>
-            </div>
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i> Joint Date</p>
-                <p class="mb-1 text-muted">{{$employee->date_of_join}}</p>
-            </div>
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i>  Gender</p>
-                <p class="mb-1 text-muted">{{$employee->gender}}</p>
-            </div>
-            <div class="mb-3">
-                <p class="mb-1"><i class="fa-brands fa-gg"></i>  Is-Present</p>
-                <p class="mb-1 text-muted">
-                    @if ($employee->is_present == 1)
+                 <p class="mb-1"><Strong>Phone</Strong> : <span class="text-muted">{{$employee->phone}}</span> </p>
+                <p class="mb-1"><Strong>Email</Strong> : <span class="text-muted">{{$employee->email}}</span> </p>
+                <p class="mb-1"><Strong>Nrc</Strong> : <span class="text-muted">{{$employee->nrc_number}}</span> </p>
+                <p class="mb-1"><Strong>Gender</Strong> : <span class="text-muted">{{$employee->gender}}</span> </p>
+                <p class="mb-1"><Strong>Birthday</Strong> : <span class="text-muted">{{$employee->birthday}}</span> </p>
+                <p class="mb-1"><Strong>Address</Strong> : <span class="text-muted">{{$employee->address}}</span> </p>
+                <p class="mb-1"><Strong>Join Date</Strong> : <span class="text-muted">{{$employee->date_of_join}}</span> </p>
+                <p class="mb-1"><Strong>Is Present</Strong> : <span class="text-muted"> @if ($employee->is_present == 1)
                     <span class="badge adege-pill badge-success">Present</span>
                     @else
                     <span class="badge adege-pill badge-danger">Leave</span>
-                    @endif
-                </p>
+                    @endif</span> </p>
             </div>
+
         </div>
-        </div>
+
     </div>
 </div>
 
