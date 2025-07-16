@@ -106,6 +106,13 @@
 
                             </a></li>
 
+                             <li class="sidebar-dropdown">
+                            <a href="{{ route('permissionManangement.index') }}">
+                             <i class="fa-solid fa-lock-open"></i>
+                                <span>Permission</span>
+
+                            </a></li>
+
                             {{-- </li>
           <li class="sidebar-dropdown">
             <a href="#">

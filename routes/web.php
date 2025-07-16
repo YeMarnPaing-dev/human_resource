@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\PermissionController;
 
 Route::get('/', function () {
     return view('register.login');
@@ -28,6 +29,7 @@ Route::get('dashboard',[AdminController::class,'dashboard'])->name('admin#dashbo
 Route::resource('employeeManangement', EmployeeController::class);
 Route::resource('departmentManangement', DepartmentController::class);
 Route::resource('roleManangement', RoleController::class);
+Route::resource('permissionManangement', PermissionController::class);
 
 
 
