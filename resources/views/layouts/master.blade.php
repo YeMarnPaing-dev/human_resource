@@ -92,7 +92,19 @@
                                 <i class="fa fa-user"></i>
                                 <span>Employees</span>
 
-                            </a>
+                            </a></li>
+                               <li class="sidebar-dropdown">
+                            <a href="{{ route('departmentManangement.index') }}">
+                             <i class="fa-solid fa-sitemap"></i>
+                                <span>Department</span>
+
+                            </a></li>
+                              <li class="sidebar-dropdown">
+                            <a href="{{ route('roleManangement.index') }}">
+                             <i class="fa-solid fa-shield-halved"></i>
+                                <span>Role</span>
+
+                            </a></li>
 
                             {{-- </li>
           <li class="sidebar-dropdown">

@@ -44,7 +44,7 @@
                             @endif
                         </td>
                         <td>
-                         @if (Auth::user()->role != 'admin')
+
                               <form action="{{ route('employeeManangement.destroy',$user->id) }}" method="POST" style="display:inline;">
                             @csrf @method('DELETE')
                             <button type="submit" onclick="return confirm('Delete this post?')" class="btn btn-sm btn-danger">
@@ -52,7 +52,7 @@
                             </button>
                         </form>
 
-                         @endif
+
 
                             <a href="{{route('employeeManangement.edit',$user->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
 
