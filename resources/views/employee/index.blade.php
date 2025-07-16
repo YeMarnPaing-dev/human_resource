@@ -20,6 +20,7 @@
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>
+                    <th>Roles</th>
                     <th>Nrc Number</th>
                     <th>Is-Present</th>
                     <th>Action</th>
@@ -34,6 +35,7 @@
                         <td>{{ $user->user_name }}</td>
                         <td>{{ $user->phone}}</td>
                         <td>{{ $user->email }}</td>
+                        <td><span class="badge badge-primary">{{$user->role_names}}</span></td>
                         <td>{{ $user->nrc_number }}</td>
                         <td>
 

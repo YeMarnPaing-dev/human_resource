@@ -70,6 +70,18 @@
                     </select>
                 </div>
 
+                 <div class="md-form">
+                    <label for="">Role 0r Designation</label>
+                    <select name="roles[]" class="form-control select-hr" id="" multiple>
+                      @foreach ($roles as $role)
+                      <option value="{{$role->name}}" @if (in_array($role->id, $old))
+                        selected
+                      @endif >{{$role->name}}</option>
+                      @endforeach
+                    </select>
+                </div>
+
+
                 <div class="md-form">
                     <label for="">Join Date</label>
                     <input type="text"  name="dateOfJoin" value="{{$employee->date_of_join}}" class="form-control dateOfJoin">

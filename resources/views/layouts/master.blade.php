@@ -33,6 +33,9 @@
     {{-- date range picker  --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+    {{-- select2  --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -299,6 +302,8 @@
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
     $(function($) {
         @if (session('create'))
@@ -316,6 +321,8 @@
                 $('.page-wrapper').removeClass('toggled');
             }
         })
+
+          $('.select-hr').select2();
 
         // $(document).on('click', '.delete-btn', function(e) {
         //     e.preventDefault();

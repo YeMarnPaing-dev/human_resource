@@ -6,7 +6,7 @@
 @section('content')
 
 
-<div class="card">
+<div class="card mb-3">
     <div class="card-body">
 
         <div class="row">
@@ -20,7 +20,8 @@
      <div class="py-3 px-2">
                 <h3>{{Auth::user()->name}}</h3>
                 <p class=" mb-1">{{Auth::user()->employee_id}} | <span class="">{{Auth::user()->phone}}</span></p>
-                <p class="text-muted mb-1"><span style="border-radius: 10px" class="badge badge-dark  p-2">{{Auth::user()->department ? Auth::user()->department->name : ' '}} Department</span></p>
+               <a href="{{asset('employee/'.Auth::user()->profile_img)}}" download=""> <p class="text-muted mb-1"><span style="border-radius: 10px" class="badge badge-dark  p-2">{{Auth::user()->department ? Auth::user()->department->name : ' '}} Department</span></p></a>
+
             </div>
             </div>
 
@@ -45,5 +46,29 @@
     </div>
 </div>
 
+<div class="card mb-3">
+    <div class="card-body">
+        <a href="{{route('logout')}}" class="logout-btn btn btn-danger"><i class="fa-solid fa-right-from-bracket m-2"></i>Logout</a>
+    </div>
+</div>
+
 
 @endsection
+{{-- @section('script')
+
+<script>
+    $(document).ready(function(){
+        $('.logout-btn').on('click', function(e){
+e.preventDefault();
+$.ajax({
+    url:'auth/logout',
+    type:'POST'
+
+}).done(function(res){
+window.location.reload();
+});
+        });
+    });
+</script>
+
+@endsection --}}

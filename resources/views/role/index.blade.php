@@ -17,6 +17,8 @@
                 <tr>
 
                     <th>Name</th>
+                    <th>Permissions</th>
+                    <th>Actions</th>
 
                 </tr>
             </thead>
@@ -25,7 +27,7 @@
                     <tr>
 
                         <td>{{ $user->name }}</td>
-
+                        <td><span class="badge badge-primary">{{$user->permissions}}</span></td>
 
                         <td>
 

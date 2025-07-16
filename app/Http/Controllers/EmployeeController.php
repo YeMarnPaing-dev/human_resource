@@ -7,6 +7,8 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\UpdateForm;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Requests\StoreEmployee;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -19,14 +21,49 @@ class EmployeeController extends Controller
 
 public function index(){
 
-    $employees = User::select('users.*','users.name as user_name','users.email','users.phone','users.employee_id','users.nrc_number','users.gender','users.is_present','users.created_at','users.updated_at',
-    'departments.name as department_name')
-
-    ->when(request('searchKey'),function($query){
-            $query->whereAny(['users.name','departments.name','users.phone'], 'like', '%'.request('searchKey').'%');
-        })
-    ->leftJoin('departments','users.department_id','departments.id')
-    ->orderBy('created_at','desc')
+   $employees = User::select(
+        'users.id',
+        'users.name as user_name',
+        'users.email',
+        'users.phone',
+        'users.employee_id',
+        'users.nrc_number',
+        'users.gender',
+        'users.is_present',
+        'users.created_at',
+        'users.updated_at',
+        'departments.name as department_name',
+        DB::raw("GROUP_CONCAT(roles.name SEPARATOR ', ') as role_names")
+    )
+    ->leftJoin('departments', 'users.department_id', '=', 'departments.id')
+    ->leftJoin('model_has_roles', function($join) {
+        $join->on('users.id', '=', 'model_has_roles.model_id')
+             ->where('model_has_roles.model_type', '=', User::class);
+    })
+    ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+    ->when(request('searchKey'), function($query) {
+        $searchKey = '%' . request('searchKey') . '%';
+        $query->where(function ($q) use ($searchKey) {
+            $q->where('users.name', 'like', $searchKey)
+              ->orWhere('departments.name', 'like', $searchKey)
+              ->orWhere('users.phone', 'like', $searchKey)
+              ->orWhere('roles.name', 'like', $searchKey);
+        });
+    })
+    ->groupBy(
+        'users.id',
+        'users.name',
+        'users.email',
+        'users.phone',
+        'users.employee_id',
+        'users.nrc_number',
+        'users.gender',
+        'users.is_present',
+        'users.created_at',
+        'users.updated_at',
+        'departments.name'
+    )
+    ->orderBy('users.created_at', 'desc')
     ->paginate(10);
 
     return view('employee.index',compact('employees'));
@@ -35,7 +72,8 @@ public function index(){
 public function create(){
 
     $departments = Department::orderBy('name')->get();
-    return view('employee.create',compact('departments'));
+    $roles = Role::all();
+    return view('employee.create',compact('departments','roles'));
 }
 
 public function store(StoreEmployee $request){
@@ -62,6 +100,7 @@ public function store(StoreEmployee $request){
     $employee->password = Hash::make($request->password);
     $employee->save();
 
+    $employee ->syncRoles($request->roles);
 
     return redirect()->route('employeeManangement.index')->with('create','Employee is created successfully');
 }
@@ -80,7 +119,9 @@ public function store(StoreEmployee $request){
     public function edit($id){
         $employee = User::findorfail($id);
         $departments = Department::orderBy('name')->get();
-       return view('employee.edit',compact('departments','employee'));
+        $old = $employee->roles->pluck('id')->toArray();
+        $roles = Role::all();
+       return view('employee.edit',compact('departments','employee','roles','old'));
     }
 
     public function update($id, UpdateForm $request){
@@ -114,6 +155,8 @@ if ($request->hasFile('image')) {
     $employee->is_present = $request->is_present;
     // $employee->password =$request->password ?  Hash::make($request->password) : $employee->password;
     $employee->update();
+
+    $employee ->syncRoles($request->roles);
 
 
     return redirect()->route('employeeManangement.index')->with('update','Employee is updated successfully');

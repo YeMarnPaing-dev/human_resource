@@ -19,6 +19,22 @@
                     <label for="">Name</label>
                     <input type="text" name="name" value="{{$role->name}}" class="form-control">
                 </div>
+
+             <div class="row">
+            @foreach ($permissions as $per)
+                <div class="col-md-4 col-6">
+                     <div class="form-check mt-2">
+       <input class="form-check-input" name="permissions[]" type="checkbox" id="checkbox_{{$per->id}}" value="{{$per->name}}" @if (in_array($per->id, $old))
+       checked
+       @endif>
+              <label class="form-check-label" for="checkbox_{{$per->id}}">
+   {{$per->name}}
+  </label>
+              </div>
+                </div>
+            @endforeach
+               </div>
+
      <div class="col-md-6 ">
                 <div class="d-flex justify-content-center">
                     <div class="">

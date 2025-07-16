@@ -8,8 +8,8 @@
         <div class="card-body">
             <form action="{{route('roleManangement.store')}}" method="POST" id="create-form" >
                 @csrf
-<div class="row">
-    <div class="col-lg-6"><div class="md-form">
+
+    <div class="col-md-6 col-12"><div class="md-form">
 
 
                 <div class="md-form">
@@ -17,11 +17,26 @@
                     <input type="text" name="name" class="form-control">
                 </div>
 
+            </div>
+
+               <div class="row">
+            @foreach ($permissions as $per)
+                <div class="col-md-4 col-6">
+                     <div class="form-check mt-2">
+       <input class="form-check-input" name="permissions[]" type="checkbox" id="checkbox_{{$per->id}}" value="{{$per->name}}">
+              <label class="form-check-label" for="checkbox_{{$per->id}}">
+   {{$per->name}}
+  </label>
+              </div>
+                </div>
+            @endforeach
+               </div>
+
                 <div class="d-flex justify-content-center">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-primary my-3 btn-block">Confirm</button>
                     </div>
-                </div>
+
             </form>
         </div>
     </div>
