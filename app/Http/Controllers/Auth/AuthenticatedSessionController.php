@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
             // dd($request->user());
            return to_route('admin#dashboard');
           }else{
-            dd('Hi This is user');
+            return to_route('admin#profile');
           }
     }
 

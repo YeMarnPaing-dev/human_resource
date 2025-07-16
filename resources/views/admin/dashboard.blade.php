@@ -11,12 +11,12 @@
 
         <div class="row">
             <div class="text-center ">
-                <img src="{{Auth::user()->profile_img == null ? asset('userImage/default-avatar.png') : asset('employee/'. Auth::user()->profile_img)}}" class=""
+                <a href="{{route('admin#profile')}}"><img src="{{Auth::user()->profile_img == null ? asset('userImage/default-avatar.png') : asset('employee/'. Auth::user()->profile_img)}}" class=""
    style="width:120px;
     height: 120px;
     border-radius: 50%;
     border:1px solid #ddd;
-    padding: 3px;" alt="">
+    padding: 3px;" alt=""></a>
      <div class="py-3 px-2">
                 <h3>{{Auth::user()->name}}</h3>
                 <p class=" mb-1">{{Auth::user()->employee_id}} | <span class="">{{Auth::user()->phone}}</span></p>
@@ -48,7 +48,10 @@
 
 <div class="card mb-3">
     <div class="card-body">
-        <a href="{{route('logout')}}" class="logout-btn btn btn-danger"><i class="fa-solid fa-right-from-bracket m-2"></i>Logout</a>
+       <form action="{{route('logout')}}" method="POST">
+        @csrf
+        <input class="logout-btn btn btn-danger" type="submit" value="logout"></input>
+       </form>
     </div>
 </div>
 

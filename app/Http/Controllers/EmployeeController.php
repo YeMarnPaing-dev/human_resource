@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateForm;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\StoreEmployee;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -166,6 +167,12 @@ if ($request->hasFile('image')) {
         $employee = User::findorFail($id);
 
         return view('employee.showDetail',compact('employee'));
+    }
+
+    public function profile(){
+        $employee = Auth::user();
+
+        return view('admin.showDetail',compact('employee'));
     }
 
 

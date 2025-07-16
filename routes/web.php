@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('dashboard',[AdminController::class,'dashboard'])->name('admin#dashboard');
+Route::get('profile',[EmployeeController::class,'profile'])->name('admin#profile');
 
 
 

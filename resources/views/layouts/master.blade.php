@@ -90,31 +90,44 @@
                             </a>
 
                         </li>
+
+                       @can('view_employee')
                         <li class="sidebar-dropdown">
                             <a href="{{ route('employeeManangement.index') }}">
                                 <i class="fa fa-user"></i>
                                 <span>Employees</span>
 
                             </a></li>
+
+                       @endcan
+                              @can('Vide_dept')
                                <li class="sidebar-dropdown">
                             <a href="{{ route('departmentManangement.index') }}">
                              <i class="fa-solid fa-sitemap"></i>
                                 <span>Department</span>
 
                             </a></li>
+                              @endcan
+
+
+                        @can('view_role')
                               <li class="sidebar-dropdown">
                             <a href="{{ route('roleManangement.index') }}">
                              <i class="fa-solid fa-shield-halved"></i>
                                 <span>Role</span>
 
                             </a></li>
+                        @endcan
 
+
+                            @can('View_permission')
                              <li class="sidebar-dropdown">
                             <a href="{{ route('permissionManangement.index') }}">
                              <i class="fa-solid fa-lock-open"></i>
                                 <span>Permission</span>
 
                             </a></li>
+                            @endcan
 
                             {{-- </li>
           <li class="sidebar-dropdown">

@@ -6,7 +6,7 @@
 @section('content')
 
 <div>
-    <a href="{{route('employeeManangement.index')}}"><input type="button" name="" class="btn btn-primary mb-2" value="Back" id=""></a>
+    <a href="{{route('admin#dashboard')}}"><input type="button" name="" class="btn btn-primary mb-2" value="Back" id=""></a>
 </div>
 <div class="card">
     <div class="card-body">
