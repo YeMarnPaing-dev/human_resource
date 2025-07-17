@@ -9,7 +9,9 @@
         <form action="{{ url('employeeManangement') }}">
             <input type="text" class="searchInput " value="{{ request('searchKey') }}"
                 placeholder="Search by name or email..." name="searchKey" />
-                <a href="{{route('employeeManangement.create')}}" class="btn btn-primary btn-sm my-2"> <i class="fa fa-plus"></i> Create Employee</a>
+                @can('create_employee')
+                 <a href="{{route('employeeManangement.create')}}" class="btn btn-primary btn-sm my-2"> <i class="fa fa-plus"></i> Create Employee</a>
+                @endcan
         </form>
              <div class="table-responsive">
                   <table class="table table-bordered table-hover align-middle text-nowrap">

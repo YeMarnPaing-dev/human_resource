@@ -100,7 +100,7 @@
                             </a></li>
 
                        @endcan
-                              @can('Vide_dept')
+                              @can('View_dept')
                                <li class="sidebar-dropdown">
                             <a href="{{ route('departmentManangement.index') }}">
                              <i class="fa-solid fa-sitemap"></i>

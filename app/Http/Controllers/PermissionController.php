@@ -22,6 +22,10 @@ class PermissionController extends Controller
 
 public function index(){
 
+     if(!auth()->user()->can('View_permission') ){
+     abort(403,'Unauthorized action.');
+    }
+
     $permissions = Permission::select('permissions.name','permissions.created_at','permissions.id')
 
     ->when(request('searchKey'),function($query){

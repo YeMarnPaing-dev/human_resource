@@ -19,6 +19,10 @@ class DepartmentController extends Controller
 
 public function index(){
 
+     if(!auth()->user()->can('View_dept') ){
+      abort(403,'Unauthorized action.');
+    }
+
     $departments = Department::select('departments.name','departments.created_at','departments.id')
 
     ->when(request('searchKey'),function($query){

@@ -47,6 +47,9 @@ public function create(){
 }
 
 public function store(StoreRole $request){
+     if(!auth()->user()->can('view_role') ){
+      abort(403,'Unauthorized action.');
+    }
 
     $role = new Role();
     $role->name = $request->name;

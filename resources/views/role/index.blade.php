@@ -9,7 +9,9 @@
         <form action="{{ url('roleManangement') }}">
             <input type="text" class="searchInput " value="{{ request('searchKey') }}"
                 placeholder="Search by name ..." name="searchKey" />
+              @can('create_role')
                 <a href="{{route('roleManangement.create')}}" class="btn btn-primary btn-sm my-2"> <i class="fa fa-plus"></i> Create role</a>
+              @endcan
         </form>
              <div class="table-responsive">
                   <table class="table table-bordered table-hover align-middle text-nowrap">

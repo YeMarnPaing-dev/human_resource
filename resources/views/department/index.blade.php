@@ -9,7 +9,9 @@
         <form action="{{ url('departmentManangement') }}">
             <input type="text" class="searchInput " value="{{ request('searchKey') }}"
                 placeholder="Search by name or email..." name="searchKey" />
+              @can('create_dept')
                 <a href="{{route('departmentManangement.create')}}" class="btn btn-primary btn-sm my-2"> <i class="fa fa-plus"></i> Create Department</a>
+              @endcan
         </form>
              <div class="table-responsive">
                   <table class="table table-bordered table-hover align-middle text-nowrap">
