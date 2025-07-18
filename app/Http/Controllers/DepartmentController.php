@@ -41,6 +41,10 @@ public function create(){
 
 public function store(StoreDepartment $request){
 
+     if(!auth()->user()->can('create_dept') ){
+      abort(403,'Unauthorized action.');
+    }
+
     $department = new Department();
     $department->name = $request->name;
     $department->save();
@@ -51,6 +55,9 @@ public function store(StoreDepartment $request){
 
   public function destroy($id)
     {
+         if(!auth()->user()->can('delete_dept') ){
+      abort(403,'Unauthorized action.');
+    }
         $department = Department::findOrFail($id);
 
         $department->delete();
@@ -58,6 +65,9 @@ public function store(StoreDepartment $request){
     }
 
     public function edit($id){
+         if(!auth()->user()->can('update_dept') ){
+         abort(403,'Unauthorized action.');
+    }
         $department = Department::findorfail($id);
 
        return view('department.edit',compact('department'));
