@@ -92,11 +92,18 @@
   <div class="preview mt-2"></div>
 </div>
 
+<div class="md-form">
+                    <label for="">Pin Code</label>
+                    <input type="number"  name="pincode" value="" class="form-control">
+                </div>
 
                 <div class="md-form">
                     <label for="">Password</label>
                     <input type="password"  name="password" class="form-control">
                 </div>
+
+
+            </div>
      </div>
 </div>
 

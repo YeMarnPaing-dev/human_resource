@@ -52,4 +52,50 @@
     </div>
 </div>
 
+<div class="card mt-2">
+    <div class="card-body">
+
+        <h5>Biometric Authentication</h5>
+       <form action="" id="biometric-registration-form">
+        <button type="submit" style=" padding:15px; box-shadow:none !important; border:1px solid #ddd; border-radius:10px " class="btn">
+            <i style=" font-size:38px " class="fa-solid fa-fingerprint"></i>
+
+        </button>
+       </form>
+
+    </div>
+</div>
+
+@endsection
+
+@section('js-script')
+
+
+
+    <script>
+      $(document).ready(function(){
+    // const register = (event) => {
+    //     event.preventDefault()
+    //     new Larapass({
+    //         register:'webauthn/register',
+    //         registerOptions:'webauthn/register/options'
+    //     }).register()
+    //      .then(function(response){
+    //       Swal.fire({
+    //             title: "Successfully Register",
+    //             icon: "success",
+    //             text: "Biometric Authentication data is successfully created",
+    //         });
+    //      })
+    //     .catch(function(response){
+    //         console.log(response);
+    //     });
+    // }
+    // document.getElementById('biometric-registration-form').addEventListener('submit',register)
+
+
+      })
+    </script>
+
+
 @endsection

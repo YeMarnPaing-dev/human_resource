@@ -33,7 +33,8 @@ class StoreEmployee extends FormRequest
              'department_id'=>'required',
              'dateOfJoin'=>'required',
              'is_present'=>'required',
-             'password'=>'required'
+             'password'=>'required',
+             'pincode'=>'required|min:6|max:6'
         ];
     }
 }
