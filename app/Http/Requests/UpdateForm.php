@@ -35,7 +35,7 @@ class UpdateForm extends FormRequest
              'department_id'=>'required',
              'dateOfJoin'=>'required',
              'is_present'=>'required',
-             'pincode'=>'nullable|min:6|max:6'
+             'pincode'=>'required|min:6|max:6'
         ];
     }
 }

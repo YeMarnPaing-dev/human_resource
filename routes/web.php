@@ -52,6 +52,7 @@ Route::resource('companySetting', CompanySettingController::class)->only(['edit'
 });
 
 Route::get('checkin-checkout',[CheckInOutController::class,'checkInOut']);
+Route::post('checkin',[CheckInOutController::class,'checkIn']);
 
 
 require __DIR__.'/auth.php';

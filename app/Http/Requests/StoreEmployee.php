@@ -34,7 +34,7 @@ class StoreEmployee extends FormRequest
              'dateOfJoin'=>'required',
              'is_present'=>'required',
              'password'=>'required',
-             'pincode'=>'required|min:6|max:6'
+             'pincode'=>'required|min:6|max:6|unique:users,pin_code'
         ];
     }
 }
