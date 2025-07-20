@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\CompanySettingController;
 
 Route::get('/', function () {
     return view('register.login');
@@ -31,7 +32,7 @@ Route::resource('employeeManangement', EmployeeController::class);
 Route::resource('departmentManangement', DepartmentController::class);
 Route::resource('roleManangement', RoleController::class);
 Route::resource('permissionManangement', PermissionController::class);
-
+Route::resource('companySetting', CompanySettingController::class)->only(['edit','update','show']);
 
 
 

@@ -91,6 +91,15 @@
 
                         </li>
 
+                              @can('View_CompanySetting')
+                               <li class="sidebar-dropdown">
+                            <a href="{{ route('companySetting.show',1) }}">
+                             <i class="fa-solid fa-building"></i>
+                                <span>Company Setting</span>
+
+                            </a></li>
+                              @endcan
+
                        @can('view_employee')
                         <li class="sidebar-dropdown">
                             <a href="{{ route('employeeManangement.index') }}">
@@ -108,6 +117,9 @@
 
                             </a></li>
                               @endcan
+
+
+
 
 
                         @can('view_role')
