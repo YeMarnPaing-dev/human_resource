@@ -8,14 +8,25 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\CompanySettingController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
+
 
 Route::get('/', function () {
     return view('register.login');
 });
 
+// WebAuthn Routes
+WebAuthnRoutes::register()->withoutMiddleware(VerifyCsrfToken::class);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+WebAuthnRoutes::register(
+    attest: 'auth/register',
+    assert: 'auth/login'
+)->withoutMiddleware(VerifyCsrfToken::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
