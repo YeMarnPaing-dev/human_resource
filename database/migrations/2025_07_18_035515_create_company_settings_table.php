@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('company_address')->nullable();
             $table->string('office_start_time')->nullable();
             $table->string('office_end_time')->nullable();
+            $table->string('break_start_time')->nullable();
+            $table->string('break_end_time')->nullable();
             $table->timestamps();
         });
     }
