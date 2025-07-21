@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <meta name="csrf-token" content="{{csrf_token()}}">
+
     <title>@yield('title')</title>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -335,17 +335,6 @@
 <script>
     $(function($) {
 
-            let token = document.head.querySelector('meta[name='csrf-token']');
-            if(token){
-                $.ajaxSetup({
-                    headers:{
-                        'X-CSRF-TOKEN':token.content
-                    }
-                });
-            }else{
-                console.error('CSRF Token not gound.');
-
-            }
 
 
         @if (session('create'))

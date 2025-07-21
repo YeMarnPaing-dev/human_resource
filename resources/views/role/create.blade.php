@@ -9,7 +9,7 @@
             <form action="{{route('roleManangement.store')}}" method="POST" id="create-form" >
                 @csrf
 
-    <div class="col-md-6 col-12"><div class="md-form">
+
 
 
                 <div class="md-form">
@@ -19,9 +19,9 @@
 
             </div>
 
-               <div class="row">
+               <div class="row p-2">
             @foreach ($permissions as $per)
-                <div class="col-md-4 col-6">
+                <div class="col-md-4 col-lg-6 col-12">
                      <div class="form-check mt-2">
        <input class="form-check-input" name="permissions[]" type="checkbox" id="checkbox_{{$per->id}}" value="{{$per->name}}">
               <label class="form-check-label" for="checkbox_{{$per->id}}">
@@ -38,7 +38,7 @@
                     </div>
 
             </form>
-        </div>
+
     </div>
 
 

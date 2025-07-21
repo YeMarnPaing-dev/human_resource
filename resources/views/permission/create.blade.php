@@ -9,7 +9,7 @@
             <form action="{{route('permissionManangement.store')}}" method="POST" id="create-form" >
                 @csrf
 <div class="row">
-    <div class="col-lg-6"><div class="md-form">
+
 
 
                 <div class="md-form">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+
     </div>
 
 
