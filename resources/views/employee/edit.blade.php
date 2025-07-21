@@ -38,6 +38,8 @@
                     <input type="text" name="nrc_number" value="{{$employee->nrc_number}}" class="form-control">
                 </div>
 
+
+
                 <div class="md-form">
                     <label for="">Gender</label>
                     <select name="gender" class="form-control" id="">
@@ -51,7 +53,10 @@
                     <label for="">Birthday</label>
                     <input type="text"  name="birthday" value="{{$employee->birthday}}" class="form-control birthday">
                 </div>
+
             </div>
+
+
 
      <div class="col-lg-6">
 
@@ -103,6 +108,11 @@
   </div>
 </div>
 
+   <div class="md-form">
+                    <label for="">Pin Code</label>
+                    <input type="number"  name="pincode" value="{{$employee->pin_code}}" class="form-control">
+                </div>
+            </div>
      </div>
 </div>
 

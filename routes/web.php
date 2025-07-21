@@ -3,18 +3,32 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\QRCodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CheckInOutController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\CompanySettingController;
+use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+
 
 Route::get('/', function () {
     return view('register.login');
 });
 
+// WebAuthn Routes
+WebAuthnRoutes::register()->withoutMiddleware(VerifyCsrfToken::class);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+WebAuthnRoutes::register(
+    attest: 'auth/register',
+    assert: 'auth/login'
+)->withoutMiddleware(VerifyCsrfToken::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,11 +45,14 @@ Route::resource('employeeManangement', EmployeeController::class);
 Route::resource('departmentManangement', DepartmentController::class);
 Route::resource('roleManangement', RoleController::class);
 Route::resource('permissionManangement', PermissionController::class);
-
+Route::resource('companySetting', CompanySettingController::class)->only(['edit','update','show']);
 
 
 
 });
+
+Route::get('checkin-checkout',[CheckInOutController::class,'checkInOut']);
+
 
 require __DIR__.'/auth.php';
 

@@ -91,6 +91,15 @@
 
                         </li>
 
+                              @can('View_CompanySetting')
+                               <li class="sidebar-dropdown">
+                            <a href="{{ route('companySetting.show',1) }}">
+                             <i class="fa-solid fa-building"></i>
+                                <span>Company Setting</span>
+
+                            </a></li>
+                              @endcan
+
                        @can('view_employee')
                         <li class="sidebar-dropdown">
                             <a href="{{ route('employeeManangement.index') }}">
@@ -108,6 +117,9 @@
 
                             </a></li>
                               @endcan
+
+
+
 
 
                         @can('view_role')
@@ -316,6 +328,8 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+ <script src="https://cdn.jsdelivr.net/npm/@laragear/webpass@2/dist/webpass.js" defer></script>
 
 <script>
     $(function($) {

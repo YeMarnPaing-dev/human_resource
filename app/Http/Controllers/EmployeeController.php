@@ -22,7 +22,7 @@ class EmployeeController extends Controller
 
 public function index(){
 
-    if(auth()->user()->can('view_employee') ){
+    if(!auth()->user()->can('view_employee') ){
       abort(403);
     }
 
@@ -101,6 +101,7 @@ public function store(StoreEmployee $request){
     $employee->department_id = $request->department_id;
     $employee->date_of_join = $request->dateOfJoin;
     $employee->profile_img = $fileName;
+    $employee->pin_code = Hash::make($request->pincode);
     $employee->is_present = $request->is_present;
     $employee->password = Hash::make($request->password);
     $employee->save();
@@ -157,6 +158,7 @@ if ($request->hasFile('image')) {
     $employee->address = $request->address;
     $employee->department_id = $request->department_id;
     $employee->date_of_join = $request->dateOfJoin;
+    $employee->pin_code =  Hash::make($request->pincode);
     $employee->is_present = $request->is_present;
     // $employee->password =$request->password ?  Hash::make($request->password) : $employee->password;
     $employee->update();
