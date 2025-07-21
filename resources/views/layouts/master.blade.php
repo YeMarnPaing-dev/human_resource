@@ -123,24 +123,24 @@
 
 
 
-                        @can('view_role')
+                        {{-- @can('view_role') --}}
                               <li class="sidebar-dropdown">
                             <a href="{{ route('roleManangement.index') }}">
                              <i class="fa-solid fa-shield-halved"></i>
                                 <span>Role</span>
 
                             </a></li>
-                        @endcan
+                        {{-- @endcan --}}
 
 
-                            @can('View_permission')
+                            {{-- @can('View_permission') --}}
                              <li class="sidebar-dropdown">
                             <a href="{{ route('permissionManangement.index') }}">
                              <i class="fa-solid fa-lock-open"></i>
                                 <span>Permission</span>
 
                             </a></li>
-                            @endcan
+                            {{-- @endcan --}}
 
                             {{-- </li>
           <li class="sidebar-dropdown">

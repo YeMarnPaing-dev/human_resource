@@ -22,9 +22,9 @@ class PermissionController extends Controller
 
 public function index(){
 
-     if(!auth()->user()->can('View_permission') ){
-     abort(403,'Unauthorized action.');
-    }
+    //  if(!auth()->user()->can('View_permission') ){
+    //  abort(403,'Unauthorized action.');
+    // }
 
     $permissions = Permission::select('permissions.name','permissions.created_at','permissions.id')
 
@@ -54,9 +54,9 @@ public function store(StorePermission $request){
 
   public function destroy($id)
     {
-         if(!auth()->user()->can('delete_Permission') ){
-      abort(403,'Unauthorized action.');
-    }
+    //      if(!auth()->user()->can('delete_Permission') ){
+    //   abort(403,'Unauthorized action.');
+    // }
         $permission = Permission::findOrFail($id);
 
         $permission->delete();
@@ -64,9 +64,9 @@ public function store(StorePermission $request){
     }
 
     public function edit($id){
-         if(!auth()->user()->can('update_permission') ){
-      abort(403,'Unauthorized action.');
-    }
+    //      if(!auth()->user()->can('update_permission') ){
+    //   abort(403,'Unauthorized action.');
+    // }
         $permission = Permission::findorfail($id);
 
        return view('permission.edit',compact('permission'));

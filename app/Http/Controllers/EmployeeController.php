@@ -22,9 +22,9 @@ class EmployeeController extends Controller
 
 public function index(){
 
-    if(!auth()->user()->can('view_employee') ){
-      abort(403);
-    }
+    // if(!auth()->user()->can('view_employee') ){
+    //   abort(403);
+    // }
 
    $employees = User::select(
         'users.id',

@@ -101,11 +101,17 @@
                               <div class="form-group">
   <label for="profile_img">Profile Image</label>
   <input type="file" name="image" class="form-control" id="profile_img" >
-  <div class="preview mt-2">
+<div class="preview mt-2">
     @if ($employee->profile_img)
-    <img src="{{$employee->profile_img_path()}}" style="width: 150px; height: 150px;" >
+        <img src="{{ $employee->profile_img_path() }}"
+             alt="Employee Photo"
+             style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd;">
+    @else
+        <img src="{{ asset('employee/6874fe1801a8c_default-avatar.png') }}"
+             alt="No Photo"
+             style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd;">
     @endif
-  </div>
+</div>
 </div>
 
    <div class="md-form">

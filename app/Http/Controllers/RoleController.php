@@ -23,9 +23,9 @@ class RoleController extends Controller
 
 public function index()
 {
-     if(!auth()->user()->can('view_role') ){
-      abort(403,'Unauthorized action.');
-    }
+    //  if(!auth()->user()->can('view_role') ){
+    //   abort(403,'Unauthorized action.');
+    // }
     $roles = Role::select(
             'roles.id',
             'roles.name',
@@ -50,9 +50,9 @@ public function create(){
 }
 
 public function store(StoreRole $request){
-     if(!auth()->user()->can('create_role') ){
-      abort(403,'Unauthorized action.');
-    }
+    //  if(!auth()->user()->can('create_role') ){
+    //   abort(403,'Unauthorized action.');
+    // }
 
     $role = new Role();
     $role->name = $request->name;
@@ -65,9 +65,9 @@ public function store(StoreRole $request){
 
   public function destroy($id)
     {
-         if(!auth()->user()->can('delete_role') ){
-      abort(403,'Unauthorized action.');
-    }
+    //      if(!auth()->user()->can('delete_role') ){
+    //   abort(403,'Unauthorized action.');
+    // }
         $role = Role::findOrFail($id);
 
         $role->delete();
@@ -75,9 +75,9 @@ public function store(StoreRole $request){
     }
 
     public function edit($id){
-         if(!auth()->user()->can('update_role') ){
-      abort(403,'Unauthorized action.');
-    }
+    //      if(!auth()->user()->can('update_role') ){
+    //   abort(403,'Unauthorized action.');
+    // }
          $permissions = Permission::all();
          $role = Role::findorfail($id);
          $old = $role->permissions->pluck('id')->toArray();

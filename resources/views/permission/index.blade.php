@@ -9,9 +9,9 @@
         <form action="{{ url('permissionManangement') }}">
             <input type="text" class="searchInput " value="{{ request('searchKey') }}"
                 placeholder="Search by name ..." name="searchKey" />
-                @can('create_permission')
+                {{-- @can('create_permission') --}}
                 <a href="{{route('permissionManangement.create')}}" class="btn btn-primary btn-sm my-2"> <i class="fa fa-plus"></i> Create permission</a>
-                @endcan
+                {{-- @endcan --}}
         </form>
              <div class="table-responsive">
                   <table class="table table-bordered table-hover align-middle text-nowrap">
