@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('company_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name')->nullable(),
-            $table->string('company_email')->nullable(),
-            $table->string('company_phone')->nullable(),
-            $table->string('company_address')->nullable(),
-            $table->string('office_start_time')->nullable(),
-            $table->string('office_end_time')->nullable(),
+            $table->string('company_name')->nullable();
+            $table->string('company_email')->nullable();
+            $table->string('company_phone')->nullable();
+            $table->string('company_address')->nullable();
+            $table->string('office_start_time')->nullable();
+            $table->string('office_end_time')->nullable();
             $table->timestamps();
         });
     }
