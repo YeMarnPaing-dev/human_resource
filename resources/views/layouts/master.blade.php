@@ -142,6 +142,15 @@
                             </a></li>
                             {{-- @endcan --}}
 
+                              {{-- @can('View_attendance') --}}
+                             <li class="sidebar-dropdown">
+                            <a href="{{ route('attendance.index') }}">
+                             <i class="fa-solid fa-clipboard-user"></i>
+                                <span>Attendance</span>
+
+                            </a></li>
+                            {{-- @endcan --}}
+
                             {{-- </li>
           <li class="sidebar-dropdown">
             <a href="#">
@@ -353,7 +362,8 @@
             }
         })
 
-          $('.select-hr').select2();
+          $('.select-hr').select2(
+          );
 
         // $(document).on('click', '.delete-btn', function(e) {
         //     e.preventDefault();

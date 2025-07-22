@@ -23,15 +23,6 @@ class CheckInOutController extends Controller
            'message'=> 'Pin Code is Wrong'
         ];
       }
-
-    //   if(CheckInCheckOut::whereNotNull('checkin_time')->exists()){
-    //     return [
-    //        'status' => 'fail',
-    //        'message'=> 'Already checkin'
-    //     ];
-    //   }
-
-
       $checkInOutData = CheckInCheckOut::firstOrCreate(
         [
         'user_id' => $user->id,

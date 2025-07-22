@@ -31,7 +31,7 @@
 
                             <td>{{ $user->name }}</td>
                             <td>
-                                <span class="badge bg-primary text-wrap p-3" style="white-space: normal;">
+                                <span class="text-wrap p-3" style="white-space: normal;">
                                     {{ $user->permissions ?: 'No Permissions' }}
                                 </span>
                             </td>
