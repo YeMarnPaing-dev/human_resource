@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>@yield('title')</title>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -122,24 +123,33 @@
 
 
 
-                        @can('view_role')
+                        {{-- @can('view_role') --}}
                               <li class="sidebar-dropdown">
                             <a href="{{ route('roleManangement.index') }}">
                              <i class="fa-solid fa-shield-halved"></i>
                                 <span>Role</span>
 
                             </a></li>
-                        @endcan
+                        {{-- @endcan --}}
 
 
-                            @can('View_permission')
+                            {{-- @can('View_permission') --}}
                              <li class="sidebar-dropdown">
                             <a href="{{ route('permissionManangement.index') }}">
                              <i class="fa-solid fa-lock-open"></i>
                                 <span>Permission</span>
 
                             </a></li>
-                            @endcan
+                            {{-- @endcan --}}
+
+                              {{-- @can('View_attendance') --}}
+                             <li class="sidebar-dropdown">
+                            <a href="{{ route('attendance.index') }}">
+                             <i class="fa-solid fa-clipboard-user"></i>
+                                <span>Attendance</span>
+
+                            </a></li>
+                            {{-- @endcan --}}
 
                             {{-- </li>
           <li class="sidebar-dropdown">
@@ -333,6 +343,9 @@
 
 <script>
     $(function($) {
+
+
+
         @if (session('create'))
             Swal.fire({
                 title: "Account Create Successfully",
@@ -349,7 +362,8 @@
             }
         })
 
-          $('.select-hr').select2();
+          $('.select-hr').select2(
+          );
 
         // $(document).on('click', '.delete-btn', function(e) {
         //     e.preventDefault();

@@ -13,20 +13,20 @@
                 @csrf
                 @method('PUT')
 <div class="row">
-    <div class="col-md-6 "><div class="md-form">
+
 
                 <div class="md-form">
                     <label for="">Name</label>
                     <input type="text" name="name" value="{{$permission->name}}" class="form-control">
                 </div>
-     <div class="col-md-6 ">
+        <div class="col-md-6 ">
                 <div class="d-flex justify-content-center">
                     <div class="">
                         <button type="submit" class="btn btn-primary my-3 btn-block">Confirm Button</button>
                     </div>
                 </div>
             </form>
-        </div>
+
     </div>
 
 

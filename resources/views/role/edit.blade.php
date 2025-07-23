@@ -13,7 +13,7 @@
                 @csrf
                 @method('PUT')
 <div class="row">
-    <div class="col-md-6 "><div class="md-form">
+
 
                 <div class="md-form">
                     <label for="">Name</label>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+
     </div>
 
 

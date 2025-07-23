@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QRCodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CheckInOutController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
@@ -47,11 +48,12 @@ Route::resource('roleManangement', RoleController::class);
 Route::resource('permissionManangement', PermissionController::class);
 Route::resource('companySetting', CompanySettingController::class)->only(['edit','update','show']);
 
-
+Route::resource('attendance', AttendanceController::class);
 
 });
 
 Route::get('checkin-checkout',[CheckInOutController::class,'checkInOut']);
+Route::post('checkin',[CheckInOutController::class,'checkIn']);
 
 
 require __DIR__.'/auth.php';

@@ -7,54 +7,61 @@
 
     <div class="table-container d-flex justify-content-between align-items-center mb-3 flex-wrap">
         <form action="{{ url('roleManangement') }}">
-            <input type="text" class="searchInput " value="{{ request('searchKey') }}"
-                placeholder="Search by name ..." name="searchKey" />
-              @can('create_role')
-                <a href="{{route('roleManangement.create')}}" class="btn btn-primary btn-sm my-2"> <i class="fa fa-plus"></i> Create role</a>
-              @endcan
+            <input type="text" class="searchInput " value="{{ request('searchKey') }}" placeholder="Search by name ..."
+                name="searchKey" />
+            {{-- @can('create_role') --}}
+            <a href="{{ route('roleManangement.create') }}" class="btn btn-primary btn-sm my-2"> <i class="fa fa-plus"></i>
+                Create role</a>
+            {{-- @endcan --}}
         </form>
-             <div class="table-responsive">
-                  <table class="table table-bordered table-hover align-middle text-nowrap">
-            <thead>
-                <tr>
-
-                    <th>Name</th>
-                    <th>Permissions</th>
-                    <th>Actions</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($roles as $user)
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle text-nowrap">
+                <thead>
                     <tr>
 
-                        <td>{{ $user->name }}</td>
-                        <td><span class="badge badge-primary">{{$user->permissions}}</span></td>
+                        <th>Name</th>
+                        <th>Permissions</th>
+                        <th>Actions</th>
 
-                        <td>
-
-                              <form action="{{route('roleManangement.destroy',$user->id)}}" method="POST" style="display:inline;">
-                            @csrf @method('DELETE')
-                            <button type="submit" onclick="return confirm('Delete this post?')" class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </form>
-
-
-
-                            <a href="{{route('roleManangement.edit',$user->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
-
-
-                        </td>
                     </tr>
+                </thead>
+                <tbody>
+                    @foreach ($roles as $user)
+                        <tr>
 
-                @endforeach
-            </tbody>
+                            <td>{{ $user->name }}</td>
+                            <td>
+                                <span class="text-wrap p-3" style="white-space: normal;">
+                                    {{ $user->permissions ?: 'No Permissions' }}
+                                </span>
+                            </td>
 
-        </table>
-             </div>
+                            <td>
+
+                                <form action="{{ route('roleManangement.destroy', $user->id) }}" method="POST"
+                                    style="display:inline;">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" onclick="return confirm('Delete this post?')"
+                                        class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+
+
+
+                                <a href="{{ route('roleManangement.edit', $user->id) }}" class="btn btn-sm btn-primary"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
+
+
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+            </table>
+        </div>
 
 
     </div>
-     <span>{{$roles->links()}}</span>
+    <span>{{ $roles->links() }}</span>
 @endsection
