@@ -11,7 +11,7 @@ class CheckInCheckOut extends Model
 
         use HasFactory;
 
-    protected $fillable = [
+    protected $guarded = [
         'user_id',
         'checkin_time',
         'checkout_time',
