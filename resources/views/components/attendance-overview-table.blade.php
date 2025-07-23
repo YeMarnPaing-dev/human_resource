@@ -1,10 +1,12 @@
 <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Employee</th>
                         @foreach ($periods as $period)
-                            <th>{{ $period->format('d') }}</th>
+                            <th @if ($period->format('D') == 'Sat' || $period->format('D') == 'Sun' )
+                            class="bg-warning"
+                            @endif >{{ $period->format('d') }}</th>
                         @endforeach
                     </tr>
                 </thead>

@@ -26,7 +26,7 @@ class AttendanceController extends Controller
        $query->whereAny(['users.name','check_in_check_outs.date'], 'like', '%'.request('searchKey').'%');
         })
 
-    ->orderBy('created_at','desc')
+    ->orderBy('date','desc')
     ->paginate(10);
 
     return view('attendance.index',compact('attendances'));

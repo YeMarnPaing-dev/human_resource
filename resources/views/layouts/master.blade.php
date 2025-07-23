@@ -194,24 +194,24 @@
 
 
         </div>
-        {{-- <div class="bottom-menu">
+        <div class="bottom-menu">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between">
-                        <a  href=""><i class="fas fa-home"></i>
+                        <a  href="{{route('admin#dashboard')}}"><i class="fas fa-home"></i>
                         <p class="mb-0 ">Home</p></a>
-                        <a  href=""><i class="fas fa-home"></i>
-                        <p class="mb-0">Home</p></a>
-                        <a  href=""><i class="fas fa-home"></i>
-                        <p class="mb-0">Home</p></a>
-                        <a  href=""><i class="fas fa-home"></i>
-                        <p class="mb-0">Home</p></a>
+                        <a  href="{{route('owner#attendance')}}"><i class="fa-solid fa-clipboard-user"></i>
+                        <p class="mb-0">Attendance</p></a>
+                        <a  href="{{ route('companySetting.show',1) }}"><i class="fa-solid fa-gear"></i>
+                        <p class="mb-0">Company</p></a>
+                        <a  href="{{route('admin#profile')}}"><i class="fa-solid fa-user"></i>
+                        <p class="mb-0">Profile</p></a>
                     </div>
                 </div>
             </div>
         </div>
   <!-- page-content" -->
-</div> --}}
+</div>
 
 
 
@@ -289,29 +289,6 @@
           $('.select-hr').select2(
           );
 
-        // $(document).on('click', '.delete-btn', function(e) {
-        //     e.preventDefault();
-
-        //     var id = $(this).data('id');
-        //     swal({
-        //             title: "Are you sure?",
-        //             text: "Do you want to Delete this!",
-        //             buttons: true,
-        //             dangerMode: true,
-        //         })
-        //         .then((willDelete) => {
-        //             if (willDelete) {
-        //                 $.ajax({
-        //                         method: "DELETE",
-        //                         url: `/employeeManangement/${id}`,
-
-        //                     })
-        //                     .done(function(res) {
-
-        //                     });
-        //             }
-        //         });
-        // })
     });
 </script>
 
