@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use App\Models\CompanySetting;
 use App\Models\CheckInCheckOut;
 use App\Http\Requests\StoreAttendance;
 use App\Http\Requests\UpdateAttendance;
@@ -95,5 +98,24 @@ public function store(StoreAttendance $request){
 
 
     return redirect()->route('attendance.index')->with('update','attendance is updated successfully');
+    }
+
+    public function overview(Request $request){
+
+        return view('attendance.overview');
+    }
+
+    public function overviewTable(Request $request){
+
+        $month = $request->month;
+        $year = $request->year;
+        $startOfMonth = $year . '-' . $month . '-01';
+        $endOFMonth = Carbon::parse($startOfMonth)->endOfMonth()->format('Y-m-d');
+
+         $periods = new CarbonPeriod( $startOfMonth, $endOFMonth);
+         $employees = User::orderBy('employee_id')->where('name','Like','%'.$request->employee_name.'%')->get();
+         $attendances = CheckInCheckOut::whereMonth('date', $month)->whereYear('date', $year)->get();
+         $company_setting = CompanySetting::findorfail(1);
+        return view('components.attendance-overview-table',compact('periods','employees','attendances','company_setting'))->render();
     }
 }

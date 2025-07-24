@@ -49,6 +49,8 @@ Route::resource('permissionManangement', PermissionController::class);
 Route::resource('companySetting', CompanySettingController::class)->only(['edit','update','show']);
 
 Route::resource('attendance', AttendanceController::class);
+Route::get('attendance-overview',[AttendanceController::class,'overview'])->name('attendance.overview');
+Route::get('attendance-overview-table',[AttendanceController::class,'overviewTable'])->name('attendance.overview-table');
 
 });
 
