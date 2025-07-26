@@ -19,18 +19,18 @@
                 <div class="form-group">
                     <select name="" class="form-control select-hr select-month" id="">
                     <option value=""> ---PleaseChoose(Month) --- </option>
-                    <option value="01">Jan</option>
-                    <option value="02">Feb</option>
-                    <option value="03">Mar</option>
-                    <option value="04">Apr</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">Aug</option>
-                    <option value="09">Sept</option>
-                    <option value="10">Oct</option>
-                    <option value="11">Nov</option>
-                    <option value="12">Dec</option>
+                    <option value="01" @if(now()->format('m') == '01' ) selected  @endif >Jan</option>
+                    <option value="02" @if(now()->format('m') == '02' ) selected  @endif >Feb</option>
+                    <option value="03" @if(now()->format('m') == '03' ) selected  @endif >Mar</option>
+                    <option value="04" @if(now()->format('m') == '04' ) selected  @endif >Apr</option>
+                    <option value="05" @if(now()->format('m') == '05' ) selected  @endif >May</option>
+                    <option value="06" @if(now()->format('m') == '06' ) selected  @endif >June</option>
+                    <option value="07" @if(now()->format('m') == '07' ) selected  @endif >July</option>
+                    <option value="08" @if(now()->format('m') == '08' ) selected  @endif >Aug</option>
+                    <option value="09" @if(now()->format('m') == '09' ) selected  @endif >Sept</option>
+                    <option value="10" @if(now()->format('m') == '10' ) selected  @endif >Oct</option>
+                    <option value="11" @if(now()->format('m') == '11' ) selected  @endif >Nov</option>
+                    <option value="12" @if(now()->format('m') == '12' ) selected  @endif >Dec</option>
                 </select>
                 </div>
             </div>
@@ -39,7 +39,8 @@
                     <select name="" class="form-control select-hr select-year" id="">
                     <option value=""> ---PleaseChoose(Year) --- </option>
                     @for ($i = 0; $i < 5 ; $i++)
-                    <option value="{{now()->subYear($i)->format('Y')}}">{{now()->subYear($i)->format('Y')}}</option>
+                    <option value="{{now()->subYear($i)->format('Y')}}" @if(now()->format('Y') == now()->subYear($i)->format('Y') )  selected @endif>
+                        {{now()->subYear($i)->format('Y')}}</option>
                     @endfor
                 </select>
                 </div> </div>
@@ -66,7 +67,14 @@
 
         $(document).ready(function(){
 
-        function attendanceOvervieTable(employee_name,month, year) {
+            attendanceOvervieTable();
+
+        function attendanceOvervieTable() {
+
+    var employee_name = $('.employee_name').val();
+    var month = $('.select-month').val();
+    var year = $('.select-year').val();
+
     $.ajax({
         url: `/attendance-overview-table?employee_name=${employee_name}&month=${month}&year=${year}`, // Use backticks for template string
         type: 'GET',
@@ -85,12 +93,10 @@
 $('.search-btn').on('click', function(event) {
     event.preventDefault(); // ✅ Add event param and prevent default properly
 
-    var employee_name = $('.employee_name').val();
-    var month = $('.select-month').val();
-    var year = $('.select-year').val();
+
 
     if (month && year) {
-        attendanceOvervieTable(employee_name,month, year);
+        attendanceOvervieTable();
     } else {
         alert('Please select both month and year.');
     }

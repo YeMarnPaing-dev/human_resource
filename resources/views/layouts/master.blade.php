@@ -92,16 +92,16 @@
 
                         </li>
 
-                              @can('View_CompanySetting')
+                              {{-- @can('View_CompanySetting') --}}
                                <li class="sidebar-dropdown">
                             <a href="{{ route('companySetting.show',1) }}">
                              <i class="fa-solid fa-building"></i>
                                 <span>Company Setting</span>
 
                             </a></li>
-                              @endcan
+                              {{-- @endcan --}}
 
-                       @can('view_employee')
+                       {{-- @can('view_employee') --}}
                         <li class="sidebar-dropdown">
                             <a href="{{ route('employeeManangement.index') }}">
                                 <i class="fa fa-user"></i>
@@ -109,15 +109,25 @@
 
                             </a></li>
 
-                       @endcan
-                              @can('View_dept')
+                       {{-- @endcan --}}
+                              {{-- @can('View_dept') --}}
                                <li class="sidebar-dropdown">
                             <a href="{{ route('departmentManangement.index') }}">
                              <i class="fa-solid fa-sitemap"></i>
                                 <span>Department</span>
 
                             </a></li>
-                              @endcan
+                              {{-- @endcan --}}
+
+                                {{-- @can('View_dept') --}}
+                               <li class="sidebar-dropdown">
+                            <a href="{{ route('salary.index') }}">
+                             <i class="fa-solid fa-money-bill-1"></i>
+                                <span>Salary</span>
+
+                            </a></li>
+                              {{-- @endcan --}}
+
 
 
 

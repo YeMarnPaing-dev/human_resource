@@ -6,7 +6,7 @@
                         @foreach ($periods as $period)
                             <th @if ($period->format('D') == 'Sat' || $period->format('D') == 'Sun' )
                             class="bg-warning"
-                            @endif >{{ $period->format('d') }}</th>
+                            @endif >{{ $period->format('d') }} <br> {{ $period->format('D') }} </th>
                         @endforeach
                     </tr>
                 </thead>

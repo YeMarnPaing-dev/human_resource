@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QRCodeController;
+use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AttendanceController;
@@ -11,8 +12,8 @@ use App\Http\Controllers\CheckInOutController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\CompanySettingController;
-use App\Http\Controllers\OwnerAttendanceController;
 // use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
+use App\Http\Controllers\OwnerAttendanceController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 
@@ -54,6 +55,8 @@ Route::get('attendance-overview',[AttendanceController::class,'overview'])->name
 Route::get('attendance-overview-table',[AttendanceController::class,'overviewTable'])->name('attendance.overview-table');
 
 Route::get('owner-attendance',[OwnerAttendanceController::class,'index'])->name('owner#attendance');
+
+Route::resource('salary',SalaryController::class);
 
 });
 
