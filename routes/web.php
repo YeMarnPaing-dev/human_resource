@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QRCodeController;
+use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AttendanceController;
@@ -11,7 +12,8 @@ use App\Http\Controllers\CheckInOutController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\CompanySettingController;
-use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
+// use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
+use App\Http\Controllers\OwnerAttendanceController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 
@@ -20,16 +22,16 @@ Route::get('/', function () {
 });
 
 // WebAuthn Routes
-WebAuthnRoutes::register()->withoutMiddleware(VerifyCsrfToken::class);
+// WebAuthnRoutes::register()->withoutMiddleware(VerifyCsrfToken::class);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-WebAuthnRoutes::register(
-    attest: 'auth/register',
-    assert: 'auth/login'
-)->withoutMiddleware(VerifyCsrfToken::class);
+// WebAuthnRoutes::register(
+//     attest: 'auth/register',
+//     assert: 'auth/login'
+// )->withoutMiddleware(VerifyCsrfToken::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -51,6 +53,10 @@ Route::resource('companySetting', CompanySettingController::class)->only(['edit'
 Route::resource('attendance', AttendanceController::class);
 Route::get('attendance-overview',[AttendanceController::class,'overview'])->name('attendance.overview');
 Route::get('attendance-overview-table',[AttendanceController::class,'overviewTable'])->name('attendance.overview-table');
+
+Route::get('owner-attendance',[OwnerAttendanceController::class,'index'])->name('owner#attendance');
+
+Route::resource('salary',SalaryController::class);
 
 });
 

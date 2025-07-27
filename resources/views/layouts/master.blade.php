@@ -92,16 +92,16 @@
 
                         </li>
 
-                              @can('View_CompanySetting')
+                              {{-- @can('View_CompanySetting') --}}
                                <li class="sidebar-dropdown">
                             <a href="{{ route('companySetting.show',1) }}">
                              <i class="fa-solid fa-building"></i>
                                 <span>Company Setting</span>
 
                             </a></li>
-                              @endcan
+                              {{-- @endcan --}}
 
-                       @can('view_employee')
+                       {{-- @can('view_employee') --}}
                         <li class="sidebar-dropdown">
                             <a href="{{ route('employeeManangement.index') }}">
                                 <i class="fa fa-user"></i>
@@ -109,15 +109,25 @@
 
                             </a></li>
 
-                       @endcan
-                              @can('View_dept')
+                       {{-- @endcan --}}
+                              {{-- @can('View_dept') --}}
                                <li class="sidebar-dropdown">
                             <a href="{{ route('departmentManangement.index') }}">
                              <i class="fa-solid fa-sitemap"></i>
                                 <span>Department</span>
 
                             </a></li>
-                              @endcan
+                              {{-- @endcan --}}
+
+                                {{-- @can('View_dept') --}}
+                               <li class="sidebar-dropdown">
+                            <a href="{{ route('salary.index') }}">
+                             <i class="fa-solid fa-money-bill-1"></i>
+                                <span>Salary</span>
+
+                            </a></li>
+                              {{-- @endcan --}}
+
 
 
 
@@ -194,24 +204,24 @@
 
 
         </div>
-        {{-- <div class="bottom-menu">
+        <div class="bottom-menu">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between">
-                        <a  href=""><i class="fas fa-home"></i>
+                        <a  href="{{route('admin#dashboard')}}"><i class="fas fa-home"></i>
                         <p class="mb-0 ">Home</p></a>
-                        <a  href=""><i class="fas fa-home"></i>
-                        <p class="mb-0">Home</p></a>
-                        <a  href=""><i class="fas fa-home"></i>
-                        <p class="mb-0">Home</p></a>
-                        <a  href=""><i class="fas fa-home"></i>
-                        <p class="mb-0">Home</p></a>
+                        <a  href="{{route('owner#attendance')}}"><i class="fa-solid fa-clipboard-user"></i>
+                        <p class="mb-0">Attendance</p></a>
+                        <a  href="{{ route('companySetting.show',1) }}"><i class="fa-solid fa-gear"></i>
+                        <p class="mb-0">Company</p></a>
+                        <a  href="{{route('admin#profile')}}"><i class="fa-solid fa-user"></i>
+                        <p class="mb-0">Profile</p></a>
                     </div>
                 </div>
             </div>
         </div>
   <!-- page-content" -->
-</div> --}}
+</div>
 
 
 
@@ -289,29 +299,6 @@
           $('.select-hr').select2(
           );
 
-        // $(document).on('click', '.delete-btn', function(e) {
-        //     e.preventDefault();
-
-        //     var id = $(this).data('id');
-        //     swal({
-        //             title: "Are you sure?",
-        //             text: "Do you want to Delete this!",
-        //             buttons: true,
-        //             dangerMode: true,
-        //         })
-        //         .then((willDelete) => {
-        //             if (willDelete) {
-        //                 $.ajax({
-        //                         method: "DELETE",
-        //                         url: `/employeeManangement/${id}`,
-
-        //                     })
-        //                     .done(function(res) {
-
-        //                     });
-        //             }
-        //         });
-        // })
     });
 </script>
 
