@@ -170,6 +170,15 @@
                             </a></li>
                             {{-- @endcan --}}
 
+                              {{-- @can('View_attendance') --}}
+                             <li class="sidebar-dropdown">
+                            <a href="{{ route('payroll') }}">
+                             <i class="fa-solid fa-money-bill-transfer"></i>
+                                <span>Payroll</span>
+
+                            </a></li>
+                            {{-- @endcan --}}
+
 
                     </ul>
                 </div>

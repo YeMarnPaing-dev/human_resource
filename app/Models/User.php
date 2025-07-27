@@ -16,7 +16,7 @@ use Laragear\WebAuthn\WebAuthnAuthentication;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable,HasRoles,WebAuthnAuthentication;
+    use HasFactory, Notifiable,HasRoles;
 
     /**
      * The attributes that are mass assignable.

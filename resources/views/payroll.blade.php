@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Attendance')
+@section('title', 'Payroll')
 
 @section('content')
 <div class="card">
@@ -46,7 +46,7 @@
         </div>
 
         <!-- AJAX Result Placeholder -->
-        <div class="attendance_overview_table"></div>
+        <div class="payroll-table"></div>
     </div>
 </div>
 @endsection
@@ -55,7 +55,7 @@
 <script>
     $(document).ready(function () {
         // Run once on page load
-        loadAttendanceOverview();
+        payrollTable();
 
         // Trigger on button click
         $('.search-btn').on('click', function (event) {
@@ -71,13 +71,13 @@
         });
 
         // Core AJAX function
-        function loadAttendanceOverview() {
+        function payrollTable() {
             const employeeName = $('.employee_name').val();
             const month = $('.select-month').val();
             const year = $('.select-year').val();
 
             $.ajax({
-                url: `/attendance-overview-table`,
+                url: `payroll-table`,
                 type: 'GET',
                 data: {
                     employee_name: employeeName,
@@ -85,11 +85,11 @@
                     year: year
                 },
                 success: function (res) {
-                    $('.attendance_overview_table').html(res);
+                    $('.payroll-table').html(res);
                 },
                 error: function (xhr) {
                     console.error('Error fetching data:', xhr.responseText);
-                    $('.attendance_overview_table').html(
+                    $('.payroll-table').html(
                         `<div class="alert alert-danger">Unable to load attendance data.</div>`
                     );
                 }
