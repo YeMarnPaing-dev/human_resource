@@ -38,6 +38,7 @@
         @csrf
         <input class="logout-btn btn btn-danger" type="submit" value="logout"></input>
        </form>
+
     </div>
 </div>
 

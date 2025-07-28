@@ -54,33 +54,42 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        // Run once on page load
+        // Load initial data
         payrollTable();
 
-        // Trigger on button click
-        $('.search-btn').on('click', function (event) {
-            event.preventDefault();
+        // Search button click
+        $('.search-btn').on('click', function (e) {
+            e.preventDefault();
             const month = $('.select-month').val();
             const year = $('.select-year').val();
 
             if (month && year) {
-                loadAttendanceOverview();
+                payrollTable();
             } else {
                 alert('Please select both month and year.');
             }
         });
 
-        // Core AJAX function
+        // Optionally trigger search on input change
+        $(' .select-month, .select-year').on('change keyup', function () {
+            const month = $('.select-month').val();
+            const year = $('.select-year').val();
+
+            if (month && year) {
+                payrollTable();
+            }
+        });
+
         function payrollTable() {
-            const employeeName = $('.employee_name').val();
+
             const month = $('.select-month').val();
             const year = $('.select-year').val();
 
             $.ajax({
-                url: `payroll-table`,
+                url: `{{ url('payroll-table') }}`,
                 type: 'GET',
                 data: {
-                    employee_name: employeeName,
+
                     month: month,
                     year: year
                 },
@@ -90,7 +99,7 @@
                 error: function (xhr) {
                     console.error('Error fetching data:', xhr.responseText);
                     $('.payroll-table').html(
-                        `<div class="alert alert-danger">Unable to load attendance data.</div>`
+                        `<div class="alert alert-danger">Unable to load payroll data.</div>`
                     );
                 }
             });

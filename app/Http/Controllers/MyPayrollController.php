@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use auth;
 use Carbon\Carbon;
 use App\Models\User;
 use Carbon\CarbonPeriod;
@@ -11,7 +12,7 @@ use App\Models\CheckInCheckOut;
 use App\Http\Requests\StoreAttendance;
 use App\Http\Requests\UpdateAttendance;
 
-class PayrollController extends Controller
+class MyPayrollController extends Controller
 {
 
     public function payroll(Request $request){
@@ -34,7 +35,7 @@ class PayrollController extends Controller
 
 
          $periods = new CarbonPeriod( $startOfMonth, $endOFMonth);
-         $employees = User::orderBy('employee_id')->where('name','Like','%'.$request->employee_name.'%')->get();
+         $employees = User::orderBy('employee_id')->where('id', auth()->user()->id)->get();
          $attendances = CheckInCheckOut::whereMonth('date', $month)->whereYear('date', $year)->get();
          $company_setting = CompanySetting::findorfail(1);
         return view('components.payroll-table',compact('periods','employees','attendances','company_setting','daysInMonth','workingDays','offDays','month','year'))->render();

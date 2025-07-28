@@ -8,11 +8,12 @@ use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MyPayrollController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CheckInOutController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\PermissionController;
 // use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\CompanySettingController;
 use App\Http\Controllers\OwnerAttendanceController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -61,6 +62,9 @@ Route::resource('salary',SalaryController::class);
 
 Route::get('payroll',[PayrollController::class,'payroll'])->name('payroll');
 Route::get('payroll-table',[PayrollController::class,'payrollTable'])->name('payroll-table');
+
+Route::get('my-payroll',[MyPayrollController::class,'payroll']);
+Route::get('my-payroll-table',[MyPayrollController::class,'payrollTable']);
 
 });
 

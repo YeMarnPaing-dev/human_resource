@@ -5,6 +5,8 @@
 
 @section('content')
 
+
+
  <div class="table-container d-flex justify-content-between align-items-center mb-3 flex-wrap">
 
     <h5>Attendance Record</h5>
@@ -47,5 +49,14 @@
 
 
 
+@endsection
 
+
+@section('script')
+<script>
+    $(document).ready(function () {
+        // Load initial data
+
+    });
+</script>
 @endsection

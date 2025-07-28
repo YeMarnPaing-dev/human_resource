@@ -18,6 +18,8 @@
 
                     @php
                         $attendanceDay = 0;
+                        $salary = collect($user->salaries)->where('month',$month)->where('year',$year)->first();
+                        $perDay = $salary ? ($salary->amount / $workingDays) : 0;
                     @endphp
 
                      @foreach ($periods as $period )
@@ -57,6 +59,7 @@
 
                          @php
                              $leaveDay = $workingDays - $attendanceDay;
+                             $total = $perDay * $attendanceDay;
                          @endphp
 
                     <tr>
@@ -67,6 +70,8 @@
                         <td>{{$offDays}}</td>
                         <td>{{$attendanceDay}}</td>
                         <td>{{$leaveDay}}</td>
+                        <td>{{number_format($perDay)}}MMK</td>
+                        <td>{{number_format($total)}}MMK</td>
                     </tr>
                 @endforeach
                 </tbody>
