@@ -179,6 +179,15 @@
                             </a></li>
                             {{-- @endcan --}}
 
+                              {{-- @can('View_attendance') --}}
+                             <li class="sidebar-dropdown">
+                            <a href="{{ route('project.index') }}">
+                             <i class="fa-solid fa-toolbox"></i>
+                                <span>Project</span>
+
+                            </a></li>
+                            {{-- @endcan --}}
+
 
                     </ul>
                 </div>
