@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Attendance')
+@section('title', 'Payroll')
 
 @section('content')
 <div class="card">
@@ -46,7 +46,7 @@
         </div>
 
         <!-- AJAX Result Placeholder -->
-        <div class="attendance_overview_table"></div>
+        <div class="payroll-table"></div>
     </div>
 </div>
 @endsection
@@ -54,43 +54,52 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        // Run once on page load
-        loadAttendanceOverview();
+        // Load initial data
+        payrollTable();
 
-        // Trigger on button click
-        $('.search-btn').on('click', function (event) {
-            event.preventDefault();
+        // Search button click
+        $('.search-btn').on('click', function (e) {
+            e.preventDefault();
             const month = $('.select-month').val();
             const year = $('.select-year').val();
 
             if (month && year) {
-                loadAttendanceOverview();
+                payrollTable();
             } else {
                 alert('Please select both month and year.');
             }
         });
 
-        // Core AJAX function
-        function loadAttendanceOverview() {
-            const employeeName = $('.employee_name').val();
+        // Optionally trigger search on input change
+        $(' .select-month, .select-year').on('change keyup', function () {
+            const month = $('.select-month').val();
+            const year = $('.select-year').val();
+
+            if (month && year) {
+                payrollTable();
+            }
+        });
+
+        function payrollTable() {
+
             const month = $('.select-month').val();
             const year = $('.select-year').val();
 
             $.ajax({
-                url: `/attendance-overview-table`,
+                url: `{{ url('payroll-table') }}`,
                 type: 'GET',
                 data: {
-                    employee_name: employeeName,
+
                     month: month,
                     year: year
                 },
                 success: function (res) {
-                    $('.attendance_overview_table').html(res);
+                    $('.payroll-table').html(res);
                 },
                 error: function (xhr) {
                     console.error('Error fetching data:', xhr.responseText);
-                    $('.attendance_overview_table').html(
-                        `<div class="alert alert-danger">Unable to load attendance data.</div>`
+                    $('.payroll-table').html(
+                        `<div class="alert alert-danger">Unable to load payroll data.</div>`
                     );
                 }
             });

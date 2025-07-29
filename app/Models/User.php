@@ -3,20 +3,21 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Salary;
 use App\Models\Department;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use Laragear\WebAuthn\WebAuthnAuthentication;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laragear\WebAuthn\Contracts\WebAuthnAuthenticatable;
-use Laragear\WebAuthn\WebAuthnAuthentication;
 
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable,HasRoles,WebAuthnAuthentication;
+    use HasFactory, Notifiable,HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -59,5 +60,9 @@ class User extends Authenticatable
         return asset('employee/' . $this->profile_img);
      }
        return null;
+    }
+
+    public function salaries(){
+        return $this->hasMany(Salary::class,'user_id','id');
     }
 }
