@@ -50,8 +50,29 @@
                </div>
             </div>
 
+            <div class="form-group">
+                <label for="">Leader</label>
+                <select name="leaders[]" class="form-control select-hr" id="" multiple>
+                    <option value="">Please Choose</option>
+                    @foreach ($employees as  $user)
+                    <option value="{{$user->id}}">{{$user->employee_id}} - {{$user->name}}  </option>
+                    @endforeach
+                </select>
+            </div>
+
+               <div class="form-group">
+                <label for="">Member</label>
+                <select name="members[]" class="form-control select-hr" id="" multiple>
+                    <option value="">Please Choose</option>
+                    @foreach ($employees as  $user)
+                    <option value="{{$user->id}}">{{$user->employee_id}} - {{$user->name}}  </option>
+                    @endforeach
+                </select>
+            </div>
+
+
          <div class="row">
-            <div class="col-6">
+            <div class="col-md-6">
                    <div class="md-form">
                 <label for="">Priority</label>
                 <select name="priority" class="form-control  select-hr" id="">
@@ -62,7 +83,7 @@
                 </select>
             </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                    <div class="md-form">
                 <label for="">Status</label>
                 <select name="status" class="form-control select-hr" id="">

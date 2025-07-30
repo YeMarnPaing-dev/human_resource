@@ -6,7 +6,10 @@ use App\Models\User;
 use App\Models\Project;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Models\ProjectLeader;
+use App\Models\ProjectMember;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreProject;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreDepartment;
@@ -26,21 +29,49 @@ public function index(){
     //   abort(403,'Unauthorized action.');
     // }
 
-    $projects = Project::select('projects.title','projects.created_at','projects.id','projects.description',
-                'projects.start_date','projects.dead_line','projects.priority','projects.status')
+    $employees = User::orderBy('name')->get();
 
-    ->when(request('searchKey'),function($query){
-            $query->whereAny(['projects.title'], 'like', '%'.request('searchKey').'%');
-        })
 
-    ->orderBy('created_at','desc')
+
+$projects = Project::select(
+        'projects.title',
+        'projects.created_at',
+        'projects.id',
+        'projects.description',
+        'projects.start_date',
+        'projects.dead_line',
+        'projects.priority',
+        'projects.status',
+        'users.name as leader_name',
+        DB::raw('GROUP_CONCAT(members.name SEPARATOR ",") as member_name')
+    )
+    ->join('project_leaders', 'projects.id', '=', 'project_leaders.project_id')
+    ->join('users', 'project_leaders.user_id', '=', 'users.id')
+    ->leftJoin('project_members', 'projects.id', '=', 'project_members.project_id')
+    ->leftJoin('users as members', 'project_members.user_id', '=', 'members.id')
+    ->groupBy(
+        'projects.id',
+        'projects.title',
+        'projects.created_at',
+        'projects.description',
+        'projects.start_date',
+        'projects.dead_line',
+        'projects.priority',
+        'projects.status',
+        'users.name'
+    )
+    ->when(request('searchKey'), function ($query) {
+        $query->where('projects.title', 'like', '%' . request('searchKey') . '%');
+    })
+    ->orderBy('projects.created_at', 'desc')
     ->paginate(10);
 
-    return view('project.index',compact('projects'));
+    return view('project.index',compact('projects','employees'));
 }
 
 public function create(){
-    return view('project.create');
+    $employees = User::orderBy('name')->get();
+    return view('project.create',compact('employees'));
 }
 
 public function store(StoreProject $request){
@@ -71,6 +102,22 @@ $project->priority = $request->priority;
 $project->status = $request->status;
 $project->save();
 
+foreach(($request->leaders ?? []) as $leader){
+    $project_leader = new ProjectLeader;
+    $project_leader->project_id = $project->id;
+    $project_leader->user_id = $leader;
+    $project_leader->save();
+
+}
+
+foreach(($request->members ?? []) as $member){
+    $project_member = new ProjectMember;
+    $project_member->project_id = $project->id;
+    $project_member->user_id = $member;
+    $project_member->save();
+
+}
+
 
     return redirect()->route('project.index')->with('create','project is created successfully');
 }
@@ -91,27 +138,31 @@ $project->save();
     //      abort(403,'Unauthorized action.');
     // }
         $project = Project::findorfail($id);
+        $employees = User::orderBy('name')->get();
 
-       return view('project.edit',compact('project'));
+
+       return view('project.edit',compact('project','employees'));
     }
 
-    public function update($id,ProjectUpdateForm $request){
-    $project = Project::findorfail($id);
+   public function update($id, ProjectUpdateForm $request)
+{
+    $project = Project::findOrFail($id);
 
+    // Update basic project fields
     $project->title = $request->name;
-$project->description = $request->description;
-$project->start_date = $request->start_date;
-$project->dead_line = $request->dead_line;
-// $project->images = $imageName; // safe even if null
-// $project->files = $file_names ? json_encode($file_names) : null;
-$project->priority = $request->priority;
-$project->status = $request->status;
-
+    $project->description = $request->description;
+    $project->start_date = $request->start_date;
+    $project->dead_line = $request->dead_line;
+    // $project->images = $imageName;
+    // $project->files = $file_names ? json_encode($file_names) : null;
+    $project->priority = $request->priority;
+    $project->status = $request->status;
     $project->update();
 
 
-    return redirect()->route('project.index')->with('update','project is updated successfully');
-    }
+
+    return redirect()->route('project.index')->with('update', 'Project is updated successfully');
+}
 
 
 
