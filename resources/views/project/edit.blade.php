@@ -119,16 +119,17 @@
                </div>
             </div>
 
-               <div class="form-group">
-                <label for="">Leader</label>
-                <select name="leaders[]" class="form-control select-hr"  id="" multiple>
-                    @foreach ($employees as  $user)
-                    <option value="{{$user->id}}" @if (in_array($user->id , collect($project->leader)->pluck('id'->toArray())))
-                        selected
-                    @endif >{{$user->employee_id}} - {{$user->name}}  </option>
-                    @endforeach
-                </select>
-            </div>
+
+             {{-- <div class="form-group">
+    <label for="">Leader</label>
+    <select name="leaders[]" class="form-control select-hr" multiple>
+        @foreach ($employees as $user)
+            <option value="{{ $user->id }}" {{ in_array($user->id, $old) ? 'selected' : '' }}>
+                {{ $user->employee_id }} - {{ $user->name }}
+            </option>
+        @endforeach
+    </select>
+</div>>
 
                <div class="form-group">
                 <label for="">Member</label>
@@ -138,7 +139,7 @@
                     <option value="{{$user->id}}">{{$user->employee_id}} - {{$user->name}}  </option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
          <div class="row">
             <div class="col-6">

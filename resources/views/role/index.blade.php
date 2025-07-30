@@ -32,7 +32,9 @@
                             <td>{{ $user->name }}</td>
                             <td>
                                 <span class="text-wrap p-3" style="white-space: normal;">
-                                    {{ $user->permissions ?: 'No Permissions' }}
+                                      @foreach (explode(',', $user->permissions) as $per)
+                                    <span class="badge badge-primary">{{ trim($per) }}</span>
+                                @endforeach
                                 </span>
                             </td>
 

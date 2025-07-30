@@ -34,10 +34,16 @@
 
 <div class="card mb-3">
     <div class="card-body">
+        <a href="{{route('owner#attendance')}}" >
+        <button class="btn btn-sm btn-outline-primary">My Attendance</button>
+       </a>
+
        <form action="{{route('logout')}}" method="POST">
         @csrf
-        <input class="logout-btn btn btn-danger" type="submit" value="logout"></input>
+        <input class="logout-btn btn btn-danger mt-3" type="submit" value="logout"></input>
        </form>
+
+
 
     </div>
 </div>

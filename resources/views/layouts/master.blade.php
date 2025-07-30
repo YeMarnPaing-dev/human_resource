@@ -222,7 +222,7 @@
 
 
         </div>
-        <div class="bottom-menu">
+        {{-- <div class="bottom-menu">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between">
@@ -239,7 +239,7 @@
             </div>
         </div>
   <!-- page-content" -->
-</div>
+</div> --}}
 
 
 

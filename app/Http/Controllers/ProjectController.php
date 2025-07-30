@@ -133,16 +133,17 @@ foreach(($request->members ?? []) as $member){
         return redirect()->route('project.index')->with('success', 'project deleted.');
     }
 
-    public function edit($id){
-    //      if(!auth()->user()->can('update_dept') ){
-    //      abort(403,'Unauthorized action.');
-    // }
-        $project = Project::findorfail($id);
-        $employees = User::orderBy('name')->get();
+ public function edit($id)
+{
+    $project = Project::findOrFail($id);
+    $employees = User::orderBy('name')->get();
+    // $roles = Project::all();
 
+    // // Use old input if available, otherwise use current members of the project
+    // $old = old('leaders', $project->leaders->pluck('id')->toArray());
 
-       return view('project.edit',compact('project','employees'));
-    }
+    return view('project.edit', compact('project', 'employees'));
+}
 
    public function update($id, ProjectUpdateForm $request)
 {
