@@ -5,7 +5,11 @@
 
 @section('content')
 
-
+<div>
+<a href="{{ route('admin#dashboard') }}">
+    <button class="btn btn-danger btn-sm">Back</button>
+</a>
+</div>
 
  <div class="table-container d-flex justify-content-between align-items-center mb-3 flex-wrap">
 
