@@ -71,6 +71,8 @@ Route::resource('project', ProjectController::class);
 
 Route::post('users/export-excel',[EmployeeController::class,'exportExcel'])->name('export#Excel');
 
+Route::post('attendance/export-excel',[AttendanceController::class,'attendanceExcel'])->name('attendanceExcel');
+
 });
 
 Route::get('checkin-checkout',[CheckInOutController::class,'checkInOut']);

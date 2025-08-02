@@ -5,14 +5,22 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use Carbon\CarbonPeriod;
+use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Models\CompanySetting;
 use App\Models\CheckInCheckOut;
+use App\Exports\AttendanceExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreAttendance;
 use App\Http\Requests\UpdateAttendance;
 
 class AttendanceController extends Controller
 {
+
+    public function attendanceExcel(){
+    return Excel::download(new AttendanceExport(CheckInCheckOut::all()), 'attendances.xlsx');
+}
+
     public function index(){
 
     //  if(!auth()->user()->can('View_dept') ){
