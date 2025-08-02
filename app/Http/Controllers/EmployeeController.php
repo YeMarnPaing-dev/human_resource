@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Department;
+use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\UpdateForm;
@@ -12,6 +13,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Requests\StoreEmployee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -19,6 +21,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class EmployeeController extends Controller
 {
+
+public function exportExcel(){
+    return Excel::download(new UsersExport(User::all()), 'users.xlsx');
+}
+
 
 public function index(){
 

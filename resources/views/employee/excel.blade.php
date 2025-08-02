@@ -1,0 +1,2 @@
+  <x-emp-table :$employees />
+

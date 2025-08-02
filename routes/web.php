@@ -69,6 +69,8 @@ Route::get('my-payroll-table',[MyPayrollController::class,'payrollTable']);
 
 Route::resource('project', ProjectController::class);
 
+Route::post('users/export-excel',[EmployeeController::class,'exportExcel'])->name('export#Excel');
+
 });
 
 Route::get('checkin-checkout',[CheckInOutController::class,'checkInOut']);
