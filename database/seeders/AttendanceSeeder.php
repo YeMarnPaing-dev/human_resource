@@ -1,4 +1,4 @@
-J<?php
+<?php
 
 namespace Database\Seeders;
 
@@ -18,7 +18,7 @@ class AttendanceSeeder extends Seeder
     {
         $users = User::all();
        foreach($users as $user){
-        $periods = new CarbonPeriod('2025-01-01', '2025-07-31');
+        $periods = new CarbonPeriod('2025-01-01', '2025-08-31');
         foreach($periods as $period){
             if ($period->format('D') != 'Sat' && $period->format('D') != 'Sun' ){
             $attendance = new CheckInCheckOut();
